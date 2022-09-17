@@ -18,17 +18,24 @@ const RegisterForm = () => {
           <form action="" className="mt-6">
             <div className="my-5 text-sm">
               <div className="w-full bg-[#F5F5F5]">
-                <div classname="mb-3 md:w-full">
+                <div className="mb-3 md:w-full">
                   <select
-                    onChange={(e)=>{setUserType(e.target.value)}}
-                    className="form-select appearance-none block w-full bg-[#F5F5F5] py-1.5 text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
+                    onChange={(e) => {
+                      setUserType(e.target.value);
+                    }}
+                    className="form-select py-3 appearance-none block w-full bg-[#F5F5F5]  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   >
-                    <option value="selected" disabled className="text-slate-400">Sign up as</option>
+                    <option
+                      value="selected"
+                      disabled
+                      className="text-slate-400"
+                    >
+                      Sign up as
+                    </option>
                     <option value="1">Blurber</option>
-                    <option value='2'>Client</option>
+                    <option value="2">Client</option>
                   </select>
-
                 </div>
               </div>
             </div>
@@ -39,7 +46,7 @@ const RegisterForm = () => {
               <input
                 type="text"
                 id="password"
-                className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
+                className="rounded-sm focus:bg-white px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
                 placeholder="Phone Number"
               />
             </div>

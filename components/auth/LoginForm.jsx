@@ -10,17 +10,17 @@ const LoginForm = () => {
           <h3 className="font-light text-xl text-start">
             sign in to continue!
           </h3>
-          <form action='' className="mt-6">
+          <form action="" className="mt-6">
             <div className="my-5 text-sm">
               <label htmlFor="username" className="block text-black">
-                Phone Number
+               Email or Phone Number
               </label>
               <input
-                type="text"
-                autofocus
+                type="multi"
+                autoFocus
                 id="username"
-                className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
-                placeholder="Phone Number"
+                className="rounded-sm px-4 focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
+                placeholder="Email or Phone"
               />
             </div>
             <div className="my-5 text-sm">
@@ -33,7 +33,7 @@ const LoginForm = () => {
                 className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
                 placeholder="Password"
               />
-              <div className="flex justify-end w-[101px]  ml-auto rounded-md  mt-4 text-xs text-gray-600 bg[#FCBF65]">
+              <div className="flex justify-end focus:bg-white md:w-[101px]  ml-auto rounded-md  mt-4 text-xs text-gray-600 bg[#FCBF65]">
                 <a href="" className="mx-auto text-[#F67A01] py-0.5">
                   Forget Password?
                 </a>

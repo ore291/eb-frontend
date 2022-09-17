@@ -1416,6 +1416,11 @@ react-indiana-drag-scroll@^2.2.0:
     debounce "^1.2.0"
     easy-bem "^1.1.1"
 
+react-select-states-and-lga-in-nigeria@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-select-states-and-lga-in-nigeria/-/react-select-states-and-lga-in-nigeria-2.1.2.tgz#b4fdac2985857697cc262b736e2f09a546ba523c"
+  integrity sha512-EqJVRn6l87Nx9kKju+8dKq29lm9SKNtCGtWq4Jl2+zjcfvVBcpVGw83ed2jYA/iRm1jtIiD7P8o831J4MTxiVA==
+
 react@18.1.0:
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.1.0.tgz#6f8620382decb17fdc5cc223a115e2adbf104890"
