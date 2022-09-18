@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 
-const RegisterForm = () => {
+const RegisterForm = ({setUser}) => {
   const [userType, setUserType] = useState("");
 
   console.log(userType);
@@ -20,6 +20,7 @@ const RegisterForm = () => {
               <div className="w-full bg-[#F5F5F5]">
                 <div className="mb-3 md:w-full">
                   <select
+                    required
                     onChange={(e) => {
                       setUserType(e.target.value);
                     }}
@@ -44,16 +45,22 @@ const RegisterForm = () => {
                 Your number will be used as your username
               </label>
               <input
+                required
                 type="text"
                 id="password"
                 className="rounded-sm focus:bg-white px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
                 placeholder="Phone Number"
               />
             </div>
-            <button className="block text-center mt-12 text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full">
-              Proceed
-            </button>
           </form>
+          <button
+            onClick={() => {
+              setUser(userType);
+            }}
+            className="block text-center mt-12 text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full"
+          >
+            Proceed
+          </button>
           <div className="mt-12 text-xs flex flex-row justify-end gap-1 text-end font-light text-gray-400">
             {" "}
             Don't have an account?{" "}
