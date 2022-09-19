@@ -9,6 +9,7 @@
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
     "next": "latest",
+    "nigerian-phone-number-validator": "^1.1.0",
     "react": "18.1.0",
     "react-dom": "18.1.0"
   },

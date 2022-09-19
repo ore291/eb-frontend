@@ -23,4 +23,76 @@ export const ProgressBar = ({ width }) => {
   );
 };
 
+export const checkIsFilled = (num, a, b, c, d, e, f) => {
+  switch (num) {
+    case 1:
+      a = a;
+      b = true;
+      c = true;
+      d = true;
+      e = true;
+      f = true;
+
+      break;
+    case 4:
+      a = a;
+      b = b;
+      c = c;
+      d = d;
+      e = true;
+      f = true;
+
+      break;
+    case 6:
+      a = a;
+      b = b;
+      c = c;
+      d = d;
+      e = e;
+      f = f;
+      break;
+    case 3:
+      a = a;
+      b = b;
+      c = c;
+      d = true;
+      e = true;
+      f = true;
+      break;
+
+    default:
+      break;
+  }
+  // a = a ||null
+  // b = b || null;
+  // c = c || null;
+  // d = d || true;
+
+  if (a && b && c && d && e && f) return true;
+  return false;
+};
+
+export const checkNumber = (str, length) => {
+  const reg = new RegExp("^[0-9]+$");
+  var pattern = new RegExp("/^[0-9]{11}$/");
+
+  let showErr = false;
+
+  if (!reg.test(str) && str.length < length) {
+    showErr= true
+
+  }
+
+  return <div>{showErr ? (
+    <div>
+      <span className="text-red-500">Please input a valid number</span>
+    
+    </div>) :
+    (<div>
+      
+  </div>)}
+  </div>;
+};
+
+
 export default utils;

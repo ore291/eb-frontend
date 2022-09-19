@@ -29,27 +29,28 @@ const RegisterForm = ({setUser}) => {
                   >
                     <option
                       value="selected"
-                      disabled
+                     
                       className="text-slate-400"
                     >
                       Sign up as
                     </option>
-                    <option value="1">Blurber</option>
-                    <option value="2">Client</option>
+                    <option value="2">Blurber</option>
+                    <option value="3">Client</option>
                   </select>
                 </div>
               </div>
             </div>
             <div className="my-7 text-sm">
               <label htmlFor="password" className="block text-black">
-                Your number will be used as your username
+                
               </label>
               <input
                 required
-                type="text"
-                id="password"
+                type="email"
+                id="user-email"
+                spellCheck='false'
                 className="rounded-sm focus:bg-white px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
-                placeholder="Phone Number"
+                placeholder="email "
               />
             </div>
           </form>

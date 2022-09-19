@@ -1,39 +1,32 @@
-import { TRACE_OUTPUT_VERSION } from "next/dist/shared/lib/constants";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import states from "../utils/states";
-import { ProgressBar } from "../utils/utils";
+import { ProgressBar, checkIsFilled, checkNumber } from "../utils/utils";
+import { verifyPhoneNumber } from "nigerian-phone-number-validator";
 
 function BlurberMultiPartForm() {
-  
-  
-  
-
-
-  const SelectState = () => {
-    
+  // function to select nigeria state and lga
+  const [lga, setLga] = useState([]);
   const [naijaState, setNaijaState] = useState("");
   const [naijaLga, setNaijaLga] = useState("");
-  const [lga, setLga] = useState([]);
-
+  const SelectState = ({ set }) => {
     const stateList = Object.keys(states).map((state, i) => ({
-      id:i,
+      id: i,
       name: state,
-
     }));
     const handleStateSelect = (e) => {
-     
       const stateSel = e.target.value;
-     const lgaSel = stateSel !== "" ? states[stateSel] : "";
+      const lgaSel = stateSel !== "" ? states[stateSel] : "";
       setNaijaState(stateSel);
       setLga(lgaSel);
       setNaijaLga("");
-      console.log(stateSel);
+      console.log(naijaState);
+      set(false);
     };
 
     const handleLgaSelect = (e) => {
-     
       const lgaSel = e.target.value;
       setNaijaLga(lgaSel);
+      set(false);
     };
 
     return (
@@ -70,10 +63,17 @@ function BlurberMultiPartForm() {
   };
 
   const PersonalDetails = ({ page, setPage }) => {
+    const [verifyPhone, setverifyPhone] = useState(null);
     const [gender, setGender] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phone, setPhone] = useState("");
+
+    const [showErrMsg, setshowErrMsg] = useState(false);
+
     return (
       <div className="mt-32">
-        <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md transition ease-in-out delay-500 ">
+        <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500 ">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
               {" "}
@@ -87,22 +87,31 @@ function BlurberMultiPartForm() {
               <div className="my-5 text-sm">
                 <input
                   type="text"
-                  name="fullName"
+                  name="first-name"
                   autoFocus
-                  required
-                  id="full-name"
+                  onChange={(e) => {
+                    setFirstName(e.target.value);
+                    setshowErrMsg(false);
+                  }}
+                  value={firstName}
+                  id="first-name"
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
-                  placeholder="Enter your full name"
+                  placeholder="First Name"
                 />
               </div>
               <div className="my-5 text-sm">
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
+                  type="text"
+                  id="last-name"
+                  name="last-name"
+                  value={lastName}
+                  onChange={(e) => {
+                    setLastName(e.target.value);
+                    setshowErrMsg(false);
+                  }}
                   required
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full focus:bg-white"
-                  placeholder="Email"
+                  placeholder="Last Name"
                 />
               </div>
               <div className="my-5 text-sm">
@@ -110,10 +119,25 @@ function BlurberMultiPartForm() {
                   type="text"
                   id="Phone"
                   name="Phone"
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                    setverifyPhone(verifyPhoneNumber(e.target.value));
+                    setshowErrMsg(false);
+                  }}
                   required
                   className="rounded-sm focus:bg-white px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
                   placeholder="Phone Number"
                 />
+                <span
+                  className={`text-red-600  mt-2 capitalize ${
+                    verifyPhone === null || phone === ""
+                      ? "hidden py-4"
+                      : "flex p-0"
+                  }`}
+                >
+                  {!verifyPhone ? "please input a valid phone number" : ""}
+                </span>
                 <div className="flex justify-end w-[101px]  ml-auto rounded-md  mt-4 text-xs text-gray-600 bg[#FCBF65]"></div>
               </div>
 
@@ -123,7 +147,9 @@ function BlurberMultiPartForm() {
                     <select
                       onChange={(e) => {
                         setGender(e.target.value);
+                        setshowErrMsg(false);
                       }}
+                      value={gender}
                       className="form-select py-3 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     >
@@ -137,14 +163,38 @@ function BlurberMultiPartForm() {
                 </div>
               </div>
             </form>
-            <button
-              onClick={() => {
-                setPage(page + 1);
-              }}
-              className="block text-center text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full"
-            >
-              Proceed
-            </button>
+
+            {showErrMsg ? (
+              <div className="text-red-600  mt-2 capitalize">
+                Please fill all fields before continuing
+              </div>
+            ) : (
+              ""
+            )}
+
+            <div className="flex items-center justify-between pt-5">
+              <button
+                onClick={() => {
+                  setPage(page);
+                }}
+                className="md:w-4/12 rounded-md text-center text-white bg-[#000] p-3 duration-300  hover:bg-[#241c1c] "
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => {
+                  if (checkIsFilled(4, firstName, gender, phone, lastName)) {
+                    setPage(page + 1);
+                  } else {
+                    setshowErrMsg(true);
+                  }
+                }}
+                className="rounded-md text-center text-white bg-[#F67A01] py-3 px-5 duration-300 md:w-4/12 hover:bg-[#ff9900] "
+              >
+                Next
+              </button>
+            </div>
+
             <div className="mt-12 text-xs flex flex-row justify-end gap-1 text-end font-light text-gray-400">
               {/* {" "}
                 Don't have an account?{" "}
@@ -157,22 +207,33 @@ function BlurberMultiPartForm() {
       </div>
     );
   };
+
   const LocationDetails = ({ page, setPage }) => {
+    const [city, setcity] = useState("");
+    const [showErrMsg, setshowErrMsg] = useState(false);
+
     return (
       <div className="mt-32">
-        <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
+        <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
               {" "}
               Create Account
             </h1>
-            <h3 className="font-light text-sm text-start">Sign up and earn</h3>
+            <h3 className="font-light text-sm text-start">
+              Blurbers Sign in form
+            </h3>
             <ProgressBar width={10} />
             <form action="">
               <div className="my-5 text-sm flex gap-5 flex-col">
                 <input
                   type="text"
                   name="city"
+                  value={city}
+                  onChange={(e) => {
+                    setcity(e.target.value);
+                    setshowErrMsg(false);
+                  }}
                   required
                   id="city"
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
@@ -180,16 +241,37 @@ function BlurberMultiPartForm() {
                 />
               </div>
 
-              <SelectState />
+              <SelectState set={setshowErrMsg} />
             </form>
-            <button
-              onClick={() => {
-                setPage(page + 1);
-              }}
-              className="block text-center text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full"
-            >
-              Proceed
-            </button>
+            {showErrMsg ? (
+              <div className="text-red-600  mt-2 capitalize">
+                Please fill all fields before continuing
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="flex items-center justify-between pt-5">
+              <button
+                onClick={() => {
+                  setPage(page - 1);
+                }}
+                className="md:w-4/12 rounded-md text-center text-white bg-[#000] p-3 duration-300  hover:bg-[#241c1c] "
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => {
+                  if (checkIsFilled(1, city)) {
+                    setPage(page + 1);
+                  } else {
+                    setshowErrMsg(true);
+                  }
+                }}
+                className="rounded-md text-center text-white bg-[#F67A01] py-3 px-5 duration-300 md:w-4/12 hover:bg-[#ff9900] "
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -201,16 +283,21 @@ function BlurberMultiPartForm() {
     const [salary, setSalary] = useState("");
     const [employment, setEmployment] = useState("");
     const [education, setEducation] = useState("");
+    const [numofcontacts, setnumofcontacts] = useState();
+    const [occupation, setoccupation] = useState("");
+
+    const [showErrMsg, setshowErrMsg] = useState(false);
+
     return (
       <div className="mt-32">
-        <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
+        <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
               {" "}
               Create Account
             </h1>
             <h3 className="font-light text-sm text-start">
-              You're almost done
+              Blurbers Sign in form
             </h3>
             <ProgressBar width={20} />
             <form action="">
@@ -218,16 +305,23 @@ function BlurberMultiPartForm() {
                 <input
                   type="text"
                   name="numbers-contact"
+                  value={numofcontacts}
+                  onChange={(e) => {
+                    setnumofcontacts(e.target.value)
+                    setshowErrMsg(false);
+                  }}
                   autoFocus
-                  id="full-name"
+                  id="n-c"
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
-                  placeholder="Numbers of Contact"
+                  placeholder="Number of Contacts"
                 />
 
                 <select
                   onChange={(e) => {
                     setAgeBracket(e.target.value);
+                    setshowErrMsg(false);
                   }}
+                  value={ageBracket}
                   className="form-select py-3 text-start 	 mt-5 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 >
@@ -244,6 +338,7 @@ function BlurberMultiPartForm() {
                 <select
                   onChange={(e) => {
                     setSalary(e.target.value);
+                    setshowErrMsg(false);
                   }}
                   className="form-select py-3 text-start 	 mt-5 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -261,6 +356,7 @@ function BlurberMultiPartForm() {
                 <select
                   onChange={(e) => {
                     setEmployment(e.target.value);
+                    setshowErrMsg(false);
                   }}
                   className="form-select py-3 text-start 	 mt-5 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -268,13 +364,17 @@ function BlurberMultiPartForm() {
                   <option value="selected" className="text-slate-400">
                     Employment Type
                   </option>
-                  <option value=""> None</option>
-                  <option value=""> Employed</option>
-                  <option value=""> Self-Employed</option>
+                  <option value="1"> None</option>
+                  <option value="2"> Employed</option>
+                  <option value="3"> Self-Employed</option>
                 </select>
                 <input
                   type="text"
                   name="occupation"
+                  onChange={(e) => {
+                    setoccupation(e.target.value)
+                    setshowErrMsg(false);
+                  }}
                   autofocus
                   id="occupation"
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
@@ -283,6 +383,8 @@ function BlurberMultiPartForm() {
                 <select
                   onChange={(e) => {
                     setEducation(e.target.value);
+                    setshowErrMsg(false);
+
                   }}
                   className="form-select py-3 text-start 	 mt-5 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -290,21 +392,52 @@ function BlurberMultiPartForm() {
                   <option value="selected" className="text-slate-400">
                     Education Level
                   </option>
-                  <option value="">Primary</option>
-                  <option value="">Secondary</option>
-                  <option value="">Vocational</option>
-                  <option value="">Tertiary</option>
+                  <option value="1">Primary</option>
+                  <option value="2">Secondary</option>
+                  <option value="3">Vocational</option>
+                  <option value="4">Tertiary</option>
                 </select>
               </div>
             </form>
-            <button
-              onClick={() => {
-                setPage(page + 1);
-              }}
-              className="block text-center text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full"
-            >
-              Proceed
-            </button>
+            {showErrMsg ? (
+              <div className="text-red-600  mt-2 capitalize">
+                Please fill all fields before continuing
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="flex items-center justify-between pt-5">
+              <button
+                onClick={() => {
+                  setPage(page - 1);
+                }}
+                className="md:w-4/12 rounded-md text-center text-white bg-[#000] p-3 duration-300  hover:bg-[#241c1c] "
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => {
+                  if (
+                    checkIsFilled(
+                      6,
+                      occupation,
+                      education,
+                      employment,
+                      salary,
+                      ageBracket,
+                      numofcontacts
+                    )
+                  ) {
+                    setPage(page + 1);
+                  }else{
+                    setshowErrMsg(true);
+                  }
+                }}
+                className="rounded-md text-center text-white bg-[#F67A01] py-3 px-5 duration-300 md:w-4/12 hover:bg-[#ff9900] "
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -313,28 +446,41 @@ function BlurberMultiPartForm() {
 
   const WhatsappDetails = ({ page, setPage }) => {
     const [socialClass, setSocialClass] = useState("");
+    const [numofviews, setNumofViews] = useState();
+    const [maleViews, setMaleViews] = useState();
+    const [femaleViews, setFemaleViews] = useState();
+
+    const [showErrMsg, setshowErrMsg] = useState(false);
+
+       
+
     return (
       <div className="mt-32">
-        <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
+        <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
               {" "}
               Create Account
             </h1>
             <h3 className="font-light text-sm text-start">
-              Earn up to 10,000 a day
+              Blurbers Sign in form
             </h3>
             <ProgressBar width={40} />
             <form action="">
               <div className="my-5 text-sm flex-col flex gap-3">
                 <div className="my-5 text-sm">
-                  <label htmlFor="username" className="block text-black">
+                  <label htmlFor="whatsapp" className="block text-black">
                     Whatsapp Details
                   </label>
                   <input
                     type="text"
                     autoFocus
                     id="whatsapp"
+                    onChange={(e) => {
+                      setNumofViews(e.target.value)
+                      setshowErrMsg(false)
+                    }}
+                    value={numofviews}
                     className="rounded-sm px-4 focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
                     placeholder="Average Whatsapp Views"
                   />
@@ -349,19 +495,28 @@ function BlurberMultiPartForm() {
                   <div className="flex justify-between gap-3 mx-auto w-12/12">
                     <input
                       type="text"
-                      name="female"
+                      name="whatsapp-male"
+                      onChange={(e) => {
+                        setMaleViews(e.target.value)
+                        setshowErrMsg(false);
+                      }}
+                      value={maleViews}
                       autoFocus
                       id="whatsapp-male"
                       className="rounded-lg px-auto focus:bg-white py-3 text-sm mt-3 outline-black bg-gray-100 w-2/4"
-                      placeholder="number of Male viewers"
+                      placeholder="Number of male viewers"
                     />
                     <input
                       type="text"
                       name="whatsapp-female"
+                      onChange={(e) => {
+                        setFemaleViews(e.target.value)
+                        setshowErrMsg(false);
+                      }}
                       autoFocus
                       id="whatsapp-female"
                       className="rounded-lg px-aut focus:bg-white py-3 text-sm mt-3 outline-black bg-gray-100 w-2/4"
-                      placeholder=" number of Female viewers
+                      placeholder=" Number of female viewers
 "
                     />
                   </div>
@@ -369,6 +524,8 @@ function BlurberMultiPartForm() {
                 <select
                   onChange={(e) => {
                     setSocialClass(e.target.value);
+                    setshowErrMsg(false);
+                                          
                   }}
                   className="form-select py-3 text-start 	 mt-5 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -376,20 +533,49 @@ function BlurberMultiPartForm() {
                   <option value="selected" className="text-slate-400">
                     Social class of viewers
                   </option>
-                  <option value="">Poor</option>
-                  <option value="">Middle Class</option>
-                  <option value="">Rich</option>
+                  <option value="1">Poor</option>
+                  <option value="2">Middle Class</option>
+                  <option value="3">Rich</option>
                 </select>
               </div>
             </form>
-            <button
-              onClick={() => {
-                setPage(page + 1);
-              }}
-              className="block text-center text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full"
-            >
-              Proceed
-            </button>
+            {showErrMsg ? (
+              <div className="text-red-600  mt-2 capitalize">
+                Please fill all fields before continuing
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="flex items-center justify-between pt-5">
+              <button
+                onClick={() => {
+                  setPage(page - 1);
+                }}
+                className="md:w-4/12 rounded-md text-center text-white bg-[#000] p-3 duration-300  hover:bg-[#241c1c] "
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => {
+                  if (
+                    checkIsFilled(
+                      4,
+                      numofviews,
+                      maleViews,
+                      femaleViews,
+                      socialClass
+                    )
+                  ) {
+                    setPage(page + 1);
+                  } else {
+                    setshowErrMsg(true);
+                  }
+                }}
+                className="rounded-md text-center text-white bg-[#F67A01] py-3 px-5 duration-300 md:w-4/12 hover:bg-[#ff9900] "
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -397,9 +583,15 @@ function BlurberMultiPartForm() {
   };
 
   const BankDetails = ({ page, setPage }) => {
+    const [bankName, setBankName] = useState("");
+    const [accountNumber, setAccountNumber] = useState("");
+    const [accountName, setAccountName] = useState("");
+
+     const [showErrMsg, setshowErrMsg] = useState(false);
+
     return (
       <div className="mt-32">
-        <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
+        <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
               {" "}
@@ -414,6 +606,10 @@ function BlurberMultiPartForm() {
                 <input
                   type="text"
                   name="bank-name"
+                  onChange={(e) => {
+                    setBankName(e.target.value)
+                    setshowErrMsg(false);
+                  }}
                   autoFocus
                   id="bank-name"
                   className="rounded-lg px-auto focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
@@ -424,14 +620,24 @@ function BlurberMultiPartForm() {
                   type="text"
                   name="account-number"
                   autoFocus
+                  onChange={(e) => {
+                    setAccountNumber(e.target.value)
+                    setshowErrMsg(false);
+                  }}
                   id="account-number"
                   className="rounded-lg px-auto focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
                   placeholder="Account Number"
                 />
 
+                <span>please input a correct value</span>
+
                 <input
                   type="text"
                   name="account-name"
+                  onChange={(e) => {
+                    setAccountName(e.target.value)
+                    setshowErrMsg(false);
+                  }}
                   autoFocus
                   id="account-name"
                   className="rounded-lg px-auto focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
@@ -439,14 +645,35 @@ function BlurberMultiPartForm() {
                 />
               </div>
             </form>
-            <button
-              onClick={() => {
-                setPage(page + 1);
-              }}
-              className="block text-center text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full"
-            >
-              Proceed
-            </button>
+            {showErrMsg ? (
+              <div className="text-red-600  mt-2 capitalize">
+                Please fill all fields before continuing
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="flex items-center justify-between pt-5">
+              <button
+                onClick={() => {
+                  setPage(page - 1);
+                }}
+                className="md:w-4/12 rounded-md text-center text-white bg-[#000] p-3 duration-300  hover:bg-[#241c1c] "
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => {
+                  if (checkIsFilled(3, bankName, accountName, accountNumber)) {
+                    setPage(page + 1);
+                  } else {
+                    setshowErrMsg(true);
+                  }
+                }}
+                className="rounded-md text-center text-white bg-[#F67A01] py-3 px-5 duration-300 md:w-4/12 hover:bg-[#ff9900] "
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -474,7 +701,7 @@ function BlurberMultiPartForm() {
 
     return (
       <div className="mt-32">
-        <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
+        <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
               {" "}
@@ -511,6 +738,7 @@ function BlurberMultiPartForm() {
                   className="rounded-lg px-auto focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
                   placeholder="Confirm Password"
                 />
+                {/*toggle password */}
                 <div
                   className="absolute right-4 top-6"
                   onClick={() => {
@@ -555,6 +783,7 @@ function BlurberMultiPartForm() {
                     </svg>
                   )}
                 </div>
+                {/*toggle confirm password */}
                 <div
                   className="absolute right-4 top-24"
                   onClick={() => {
@@ -604,7 +833,7 @@ function BlurberMultiPartForm() {
             {showErrorMessage && isCPasswordDirty ? (
               <div className="text-red-700 font-bold transition delay-100 ease-in-out">
                 {" "}
-                Passwords did not match{" "}
+                Passwords do not match{" "}
               </div>
             ) : (
               <div></div>
@@ -615,7 +844,9 @@ function BlurberMultiPartForm() {
     );
   };
 
-  const [page, setpage] = useState(0)
+  // Multi step form controller
+
+  const [page, setpage] = useState(0);
   const componentsList = [
     <PersonalDetails page={page} setPage={setpage} />,
     <LocationDetails page={page} setPage={setpage} />,

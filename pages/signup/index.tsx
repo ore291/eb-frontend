@@ -23,13 +23,13 @@ const SignUp: NextPage = () => {
         <Header />
 
         <main>
-          {user == '1' || user == '2' ?(<div></div>):(
+          {user == '2' || user == '3' ?(<div></div>):(
           <RegisterForm setUser={setUser} />
           )}
          
           
-          {user == '1' && (<BlurberMultiPartForm />)}
-          {user == '2' && (<ClientMultiPartForm/>)}
+          {user == '2' && (<BlurberMultiPartForm />)}
+          {user == '3' && (<ClientMultiPartForm/>)}
           
 
            
