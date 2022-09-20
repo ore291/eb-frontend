@@ -1,5 +1,6 @@
 import React ,{useState,useEffect} from "react";
 import { ProgressBar } from "../utils/utils";
+import upload from './upload.svg'
 
 function ClientMultiPartForm() {
   const CompanyDetails = ({ page, setPage }) => {
@@ -27,7 +28,6 @@ function ClientMultiPartForm() {
                 <input
                   type="text"
                   name="company-rep"
-
                   autoFocus
                   id="company-rep"
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
@@ -53,15 +53,29 @@ function ClientMultiPartForm() {
                 {/* upload compony logo ,the input is covered so i could style it like the design */}
                 <label
                   htmlFor="logo"
-                  className=" text-center p-4 cursor-pointer bg-gray-100"
+                  className=" text-center p- cursor-pointer bg-gray-100"
                 >
-                  <div className="mt- flex justify-center items-center p-0">
-                    <span className="bg-[#FCBF65] px-auto py-2 w-4/12 text-center p-auto whitespace-nowrap ">
-                      Upload Picture
+                  <div className=" flex justify-start items-center p-0">
+                    <span className="bg-[#fcdb2400] md:px-auto flex justify-center capitalize items-center gap-2 px-2 py-2 rounded-lg text-lg w-full text-black  text-center md:p-auto whitespace-nowrap ">
+                      Upload company logo
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                        />
+                      </svg>
                     </span>
-                    <p className="text-lg mx-auto bg-gray-100 w-8/12 py- text-center">
+                    {/* <p className="text-lg mx-auto bg-gray-100 md:w-8/12 hidden md:block w-0 py- whitespace-nowrap text-center">
                       Company Logo
-                    </p>
+                    </p> */}
                   </div>
                   <input
                     className="form-control f"
@@ -138,7 +152,7 @@ function ClientMultiPartForm() {
                       // autoFocus
                       id="username"
                       className="rounded-sm px-4 py-3  focus:outline-none bg-gray-100 focus:bg-white w-full"
-                      placeholder="username"
+                      placeholder="Username"
                     />
                     <input
                       type={passwordType ? "password" : "text"}

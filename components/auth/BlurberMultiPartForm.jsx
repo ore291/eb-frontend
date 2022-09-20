@@ -697,7 +697,7 @@ function BlurberMultiPartForm() {
           setShowErrorMessage(true);
         }
       }
-    }, [cPassword, password]);
+    }, [cPassword]);
 
     return (
       <div className="mt-32">
