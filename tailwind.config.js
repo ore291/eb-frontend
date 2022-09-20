@@ -9,6 +9,8 @@ module.exports = {
     extend: {
       colors: {
         baseOrng: "#F67A01",
+        lightOrng: '#FCBF6540',
+        baseGray:'#1A284B'
       },
     },
   },

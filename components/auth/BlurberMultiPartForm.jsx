@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import states from "../utils/states";
-import { ProgressBar, checkIsFilled, checkNumber } from "../utils/utils";
+import { ProgressBar, checkIsFilled } from "../utils/utils";
 import { verifyPhoneNumber } from "nigerian-phone-number-validator";
 
 function BlurberMultiPartForm() {
@@ -72,7 +72,7 @@ function BlurberMultiPartForm() {
     const [showErrMsg, setshowErrMsg] = useState(false);
 
     return (
-      <div className="mt-32">
+      <div className="mt-12 md:mt-32">
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500 ">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -213,7 +213,7 @@ function BlurberMultiPartForm() {
     const [showErrMsg, setshowErrMsg] = useState(false);
 
     return (
-      <div className="mt-32">
+      <div className="mt-12 md:mt-32">
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -289,7 +289,7 @@ function BlurberMultiPartForm() {
     const [showErrMsg, setshowErrMsg] = useState(false);
 
     return (
-      <div className="mt-32">
+      <div className="mt-12 md:mt-32">
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -455,7 +455,7 @@ function BlurberMultiPartForm() {
        
 
     return (
-      <div className="mt-32">
+      <div className="mt-12 md:mt-32">
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -590,7 +590,7 @@ function BlurberMultiPartForm() {
      const [showErrMsg, setshowErrMsg] = useState(false);
 
     return (
-      <div className="mt-32">
+      <div className="mt-12 md:mt-32">
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -700,7 +700,7 @@ function BlurberMultiPartForm() {
     }, [cPassword]);
 
     return (
-      <div className="mt-32">
+      <div className="mt-12 md:mt-32">
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">

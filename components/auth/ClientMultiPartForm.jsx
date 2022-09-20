@@ -1,12 +1,16 @@
 import React ,{useState,useEffect} from "react";
-import { ProgressBar } from "../utils/utils";
-import upload from './upload.svg'
+import { ProgressBar, checkIsFilled } from "../utils/utils";
+
 
 function ClientMultiPartForm() {
   const CompanyDetails = ({ page, setPage }) => {
+    const [companyName, setcompanyName] = useState('')
+    const [companyRep, setcompanyRep] = useState('');
+    const [companyRepContact, setcompanyRepContact] = useState('');
+    const [companyEmail, setcompanyEmail] = useState('');
     return (
-      <div className="mt-32">
-        <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md">
+      <div className="mt-12 md:mt-32">
+        <div className="bg-white lg:w-4/12 md:6/12 w-full m-auto my-10 shadow-md">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
               Create Account
@@ -20,6 +24,9 @@ function ClientMultiPartForm() {
                 <input
                   type="text"
                   name="company-name"
+                  onChange={(e) => {
+                    setcompanyName(e.target.value);
+                  }}
                   autoFocus
                   id="company-name"
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
@@ -28,6 +35,9 @@ function ClientMultiPartForm() {
                 <input
                   type="text"
                   name="company-rep"
+                  onChange={(e) => {
+                    setcompanyRep(e.target.value);
+                  }}
                   autoFocus
                   id="company-rep"
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
@@ -36,6 +46,9 @@ function ClientMultiPartForm() {
                 <input
                   type="text"
                   name="company-rep-contact"
+                  onChange={(e) => {
+                    setcompanyRepContact(e.target.value);
+                  }}
                   autoFocus
                   id="company-rep-conatct"
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
@@ -44,6 +57,9 @@ function ClientMultiPartForm() {
                 <input
                   type="email"
                   name="company-rep-email"
+                  onChange={(e) => {
+                    setcompanyEmail(e.target.value);
+                  }}
                   autoFocus
                   id="company-rep-email"
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
@@ -91,7 +107,7 @@ function ClientMultiPartForm() {
             </form>
             <button
               onClick={() => {
-                setPage(page + 1);
+                if (checkIsFilled(4, companyName,companyEmail,companyRep,companyRepContact)) setPage(page + 1);
               }}
               className="block text-center text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full"
             >
@@ -122,8 +138,8 @@ function ClientMultiPartForm() {
          }, [cPassword, password]);
 
         return (
-          <div className="mt-32">
-            <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
+          <div className="mt-12 md:mt-32">
+            <div className="bg-white lg:w-4/12 md:6/12 w-full m-auto my-10 shadow-md transition ease-in-out delay-500">
               <div className="py-8 px-8 rounded-xl">
                 <h1 className="font-medium text-2xl mt-3 text-start">
                   {" "}

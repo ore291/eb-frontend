@@ -1,5 +1,6 @@
 import React from "react";
 import states from "./states";
+import { BsUpload } from "react-icons/bs";
 
 function utils() {
   return <div>utils</div>;
@@ -9,7 +10,7 @@ export const ProgressBar = ({ width }) => {
   return (
     <div className="mt-6">
       <span className="text-sm font-medium">{`${width}% completed`}</span>
-     
+
       <div
         id="progress-bar"
         className={` flex justify-start mt-3 m-auto bg-gray-300 rounded-full h-2.5 dark:bg-gray-700`}
@@ -79,39 +80,53 @@ export const checkNumber = (str, length) => {
   let showErr = false;
 
   if (!reg.test(str) && str.length < length) {
-    showErr= true
-
+    showErr = true;
   }
 
-  return <div>{showErr ? (
+  return (
     <div>
-      <span className="text-red-500">Please input a valid number</span>
-    
-    </div>) :
-    (<div>
-      
-  </div>)}
-  </div>;
+      {showErr ? (
+        <div>
+          <span className="text-red-500">Please input a valid number</span>
+        </div>
+      ) : (
+        <div></div>
+      )}
+    </div>
+  );
 };
 
-
-export const jobsCard = ({cover,description,slug,client}) => {
+export const JobsCard = ({ cover, description, client, status }) => {
   return (
- <div className="flex  items-center justify-center bg-indigo-50 px-4">
-  <div className="max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
-    <img src={cover} alt="plant" className="h-auto w-full" />
-        <div className="p-5">
-          <div>{client }</div>
+    <div className="flex  items-center justify-center bg-indigo-5 md:px-4 md:w-12/12  md:my-0">
+      <div className="max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
+        <img src={cover} alt="" className="object-contain max-h-[40%] " />
+        <div className="p-4 text-start">
+          <div className=" flex m-2 w-full relative">
+            <div
+              className="w-[40px] h-[40px] mr-2  rounded-full border-[2px] border-solid border-black  bg-contain bg-no-repea bg-center"
+              style={{ backgroundImage: `url(${cover})` }}
+            ></div>
+            <div className="capitalize font-bold text-xl">{client}</div>
+            <div className="justify-self-end absolute right-0 top-1">
+              <button>
+                <BsUpload />
+              </button>
+            </div>
+          </div>
           {}
-          
-          <p className="font-medium mb-5 text-gray-700">{description}</p>
-      <button className="w-full rounded-md bg-indigo-600  py-2 text-indigo-100 hover:bg-indigo-500 hover:shadow-md duration-75">See More</button>
-    </div>
-  </div>
-</div>
 
-  )
-}
+          <p className="font-normal text-sm mb-5 text-baseGray text-justify ">
+            {description}
+          </p>
+          <button className="w-full rounded-md bg-lightOrng text-baseOrng  py-2 hover:bg-orange-200 hover:shadow-md duration-75">
+            {status || "Accept Job"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 
 export default utils;

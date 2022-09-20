@@ -7,15 +7,15 @@ function Layout({children}) {
     <div>
       {/* <Header /> */}
 
-      <div className="h-screen   w-screen flex bg-gray-200">
+      <div className="h-screen  w-screen flex  ">
         {/* container */}
 
         <aside
-          className="hidden lg:flex flex-col items-center bg-white text-gray-700 shadow
+          className="hidden h-screen  lg:flex flex-col items-center   text-gray-700  
 		h-full"
         >
           {/* Side Nav Bar*/}
-          <div className="h-16 flex items-center w-full">
+          <div className="h-16 flex items-center  w-full">
             {/* Logo Section */}
             <a className="h-6 w-6 mx-auto" href="http://svelte.dev/">
               <img
@@ -30,7 +30,7 @@ function Layout({children}) {
             <li className="hover:bg-gray-100">
               <a
                 href="."
-                className="h-16 px-6 flex flex justify-center items-center w-full
+                className="h-16 px-6 flex  justify-center items-center w-full
 					focus:text-orange-500"
               >
                 <svg
@@ -57,7 +57,7 @@ function Layout({children}) {
             <li className="hover:bg-gray-100">
               <a
                 href="."
-                className="h-16 px-6 flex flex justify-center items-center w-full
+                className="h-16 px-6 flex  justify-center items-center w-full
 					focus:text-orange-500"
               >
                 <svg
@@ -79,7 +79,7 @@ function Layout({children}) {
             <li className="hover:bg-gray-100">
               <a
                 href="."
-                className="h-16 px-6 flex flex justify-center items-center w-full
+                className="h-16 px-6 flex  justify-center items-center w-full
 					focus:text-orange-500"
               >
                 <svg
@@ -120,7 +120,7 @@ function Layout({children}) {
             {/* Action Section */}
 
             <button
-              className="h-16 w-10 mx-auto  flex justify-center items-center
+              className="h-16 w-1 mx-auto  flex justify-center items-center
 				w-full focus:text-orange-500 hover:bg-red-200 focus:outline-none"
             >
               <svg
@@ -143,7 +143,7 @@ function Layout({children}) {
           </div>
         </aside>
         <div className="flex-1 flex flex-col">
-          <nav className="px-4 flex justify-between bg-white h-16 border-b-2">
+          <nav className="px-4 flex justify-between bg-white h-16 ">
             {/* top bar */}
             <ul className="flex items-center lg:hidden">
               {/* top bar left */}
@@ -164,35 +164,17 @@ function Layout({children}) {
             <ul className="flex items-center">
               {/* to bar right  */}
               <li className="pr-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={24}
-                  height={24}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="feather feather-bell"
-                >
-                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                </svg>
+               
               </li>
               <li className="h-8 w-8">
-                <img
-                  className="h-full w-full rounded-full mx-auto"
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                  alt="profile woman"
-                />
+               
               </li>
             </ul>
           </nav>
 
           {/*main content*/}
 
-          <div>{children}</div>
+          <div className='relative mx-auto w-[90vw] '>{children}</div>
         </div>
 
         <nav
