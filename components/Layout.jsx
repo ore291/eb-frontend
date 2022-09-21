@@ -1,28 +1,31 @@
 import React from 'react'
 import Header from "../components/Header";
+import { VscBriefcase } from 'react-icons/vsc'
+import {GiWallet} from 'react-icons/gi'
+import { useRouter } from "next/router";
+import {ActiveLink} from '../components/utils/utils'
 
 
-function Layout({children}) {
+
+function Layout({ children }) {
+  
   return (
     <div>
       {/* <Header /> */}
 
-      <div className="h-screen  w-screen flex  ">
+      <div className="h-full mb-10 md:mb-0  w-screen flex bg-bgGray">
         {/* container */}
 
-        <aside
-          className="hidden h-screen  lg:flex flex-col items-center   text-gray-700  
-		h-full"
-        >
+        <aside className="hidden h-screen  lg:flex flex-col items-center bg-bgGray text-gray-700  ">
           {/* Side Nav Bar*/}
-          <div className="h-16 flex items-center  w-full">
+          <div className="h-16 flex items-center  w-full ">
             {/* Logo Section */}
-            <a className="h-6 w-6 mx-auto" href="http://svelte.dev/">
-              <img
+            <a className="h-6 w-6 mx-auto" href="">
+              {/* <img
                 className="h-6 w-6 mx-auto"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/512px-Svelte_Logo.svg.png"
-                alt="svelte logo"
-              />
+                a lt="svelte logo"
+              /> */}
             </a>
           </div>
           <ul>
@@ -120,7 +123,7 @@ function Layout({children}) {
             {/* Action Section */}
 
             <button
-              className="h-16 w-1 mx-auto  flex justify-center items-center
+              className="h-16  mx-auto  flex justify-center items-center
 				w-full focus:text-orange-500 hover:bg-red-200 focus:outline-none"
             >
               <svg
@@ -143,16 +146,16 @@ function Layout({children}) {
           </div>
         </aside>
         <div className="flex-1 flex flex-col">
-          <nav className="px-4 flex justify-between bg-white h-16 ">
+          <nav className="px-4 flex justify-between bg-whit bg-bgGray h-1 ">
             {/* top bar */}
             <ul className="flex items-center lg:hidden">
               {/* top bar left */}
               <li className="h-6 w-6">
-                <img
+                {/* <img
                   className="h-full w-full mx-auto"
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/512px-Svelte_Logo.svg.png"
                   alt="svelte logo"
-                />
+                /> */}
               </li>
             </ul>
             <ul className="flex items-center">
@@ -163,78 +166,48 @@ function Layout({children}) {
             </ul>
             <ul className="flex items-center">
               {/* to bar right  */}
-              <li className="pr-4">
-               
-              </li>
-              <li className="h-8 w-8">
-               
-              </li>
+              <li className="pr-4"></li>
+              <li className="h-8 w-8"></li>
             </ul>
           </nav>
 
           {/*main content*/}
 
-          <div className='relative mx-auto w-[90vw] '>{children}</div>
+          <div className="relative mx-auto w-[90vw] bg-bgGray h-screen">
+            {children}
+          </div>
         </div>
 
         <nav
-          className="fixed bottom-0 w-full border bg-white lg:hidden flex
+          className="fixed bottom-0  w-full border bg-white lg:hidden flex
 		overflow-x-auto"
         >
           {/* Bottom Icon Navigation Menu */}
-          <a
-            href="."
+
+          <div
+            
             className="flex flex-col flex-grow items-center justify-center
 			overflow-hidden whitespace-no-wrap text-sm transition-colors
 			duration-100 ease-in-out hover:bg-gray-200 focus:text-orange-500"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
-              <path
-                d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0
-					2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"
-              />
-            </svg>
-            <span className="hidden text-sm capitalize">Inbox</span>
-          </a>
-          <a
-            href="."
+            <ActiveLink href={`/jobs`}>
+              <VscBriefcase size={"30"} />
+
+              <span className="hidd text-sm capitalize">jobs</span>
+            </ActiveLink>
+          </div>
+          <div
+            
             className="flex flex-col flex-grow items-center justify-center
 			overflow-hidden whitespace-no-wrap text-sm transition-colors
-			duration-100 ease-in-out hover:bg-gray-200 text-orange-500"
+			duration-100 ease-in-out hover:bg-gray-200 t"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-github"
-            >
-              <path
-                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0
-					0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77
-					5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7
-					0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0
-					0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-              />
-            </svg>
-            <span className="text-sm capitalize">github</span>
-          </a>
+            <ActiveLink href={'/wallet'}>
+              <GiWallet size={'30'} />
+            </ActiveLink>
+            
+            <span className="text-sm capitalize">wallet</span>
+          </div>
           <a
             href="."
             className="flex flex-col flex-grow items-center justify-center

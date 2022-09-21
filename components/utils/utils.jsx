@@ -1,6 +1,7 @@
 import React from "react";
 import states from "./states";
 import { BsUpload } from "react-icons/bs";
+import { useRouter } from "next/router";
 
 function utils() {
   return <div>utils</div>;
@@ -98,8 +99,8 @@ export const checkNumber = (str, length) => {
 
 export const JobsCard = ({ cover, description, client, status }) => {
   return (
-    <div className="flex  items-center justify-center bg-indigo-5 md:px-4 md:w-12/12  md:my-0">
-      <div className="max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
+    <div className="flex  items-center justify-center  md:px-4 w-full  md:my-0">
+      <div className="md:max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 md:hover:scale-105 hover:shadow-xl">
         <img src={cover} alt="" className="object-contain max-h-[40%] " />
         <div className="p-4 text-start">
           <div className=" flex m-2 w-full relative">
@@ -116,7 +117,7 @@ export const JobsCard = ({ cover, description, client, status }) => {
           </div>
           {}
 
-          <p className="font-normal text-sm mb-5 text-baseGray text-justify ">
+          <p className="font-normal text-sm mb-5 text-baseGray opacity-60 text-justify ">
             {description}
           </p>
           <button className="w-full rounded-md bg-lightOrng text-baseOrng  py-2 hover:bg-orange-200 hover:shadow-md duration-75">
@@ -127,6 +128,31 @@ export const JobsCard = ({ cover, description, client, status }) => {
     </div>
   );
 };
+
+export const ActiveLink =({ children, href }) =>{
+  const router = useRouter();
+  const style = {
+    
+    color: router.asPath.includes(href) ? "" : "black",
+  };
+  const className = router.asPath.includes(href)
+    ? "text-baseOrng"
+    : "text-black";
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    router.push(href);
+  };
+
+  return (
+    <div>
+      <a href={href} onClick={handleClick} style={style}  className={className}>
+        {children}
+      </a>
+    </div>
+  );
+}
+
 
 
 export default utils;

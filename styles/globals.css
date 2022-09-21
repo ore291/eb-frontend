@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+.wallet::-webkit-scrollbar  {
+    display: none;
+   
+  }
+
+
+
 
 @layer components{
     .hiw-cards{
         @apply flex md:flex-col items-center justify-start space-x-1 md:space-x-0 md:items-start md:justify-between md:h-[150px]
-    }
+    }  
 }
