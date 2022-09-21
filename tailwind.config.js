@@ -17,7 +17,7 @@ module.exports = {
         bgGray:'#f4f4f4'
       },
        fontFamily: {
-         'ibm-plex-mono': ['"IBM Plex Mono"'],
+        'ibm_plex_mono': ['"IBM Plex Mono"'],
       },
       
     },

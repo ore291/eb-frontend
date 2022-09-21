@@ -7,7 +7,7 @@ import {ActiveLink} from '../components/utils/utils'
 
 
 
-function Layout({ children }) {
+function Layout({ children ,Page}) {
   
   return (
     <div>
@@ -146,7 +146,7 @@ function Layout({ children }) {
           </div>
         </aside>
         <div className="flex-1 flex flex-col">
-          <nav className="px-4 flex justify-between bg-whit bg-bgGray h-1 ">
+          <nav className="px-4 flex justify-between md:justify-center mx-auto bg-whit bg-[#f2f2f2] h-16 ">
             {/* top bar */}
             <ul className="flex items-center lg:hidden">
               {/* top bar left */}
@@ -161,7 +161,10 @@ function Layout({ children }) {
             <ul className="flex items-center">
               {/* top bar center */}
               <li>
-                <h1 className="pl-10 lg:pl-0 text-gray-700"></h1>
+                <span className="text-2xl text-center md:w-full font-silka font-black capitalize text-[#2A3A64]">
+                  {" "}
+                 {Page}
+                </span>
               </li>
             </ul>
             <ul className="flex items-center">
@@ -173,7 +176,7 @@ function Layout({ children }) {
 
           {/*main content*/}
 
-          <div className="relative mx-auto w-[90vw] bg-bgGray h-screen">
+          <div className="relative mx-auto w-[90vw] bg-bgGray h-scree">
             {children}
           </div>
         </div>
@@ -185,34 +188,31 @@ function Layout({ children }) {
           {/* Bottom Icon Navigation Menu */}
 
           <div
-            
             className="flex flex-col flex-grow items-center justify-center
 			overflow-hidden whitespace-no-wrap text-sm transition-colors
-			duration-100 ease-in-out hover:bg-gray-200 focus:text-orange-500"
+			duration-100 ease-in-out hover:bg-gray-00 focus:text-orange-500"
           >
             <ActiveLink href={`/jobs`}>
               <VscBriefcase size={"30"} />
-
-              <span className="hidd text-sm capitalize">jobs</span>
             </ActiveLink>
+            <span className="p-0 text-sm capitalize">jobs</span>
           </div>
           <div
-            
             className="flex flex-col flex-grow items-center justify-center
 			overflow-hidden whitespace-no-wrap text-sm transition-colors
-			duration-100 ease-in-out hover:bg-gray-200 t"
+			duration-100 ease-in-out hover:bg-gray-00 t"
           >
-            <ActiveLink href={'/wallet'}>
-              <GiWallet size={'30'} />
+            <ActiveLink href={"/wallet"}>
+              <GiWallet size={"30"} />
             </ActiveLink>
-            
+
             <span className="text-sm capitalize">wallet</span>
           </div>
           <a
             href="."
             className="flex flex-col flex-grow items-center justify-center
 			overflow-hidden whitespace-no-wrap text-sm transition-colors
-			duration-100 ease-in-out hover:bg-gray-200 focus:text-orange-500"
+			duration-100 ease-in-out hover:bg-gray-00 focus:text-orange-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +234,7 @@ function Layout({ children }) {
             href="."
             className="flex flex-col flex-grow items-center justify-center
 			overflow-hidden whitespace-no-wrap text-sm transition-colors
-			duration-100 ease-in-out hover:bg-gray-200 focus:text-orange-500"
+			duration-100 ease-in-out hover:bg-gray-00 focus:text-orange-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

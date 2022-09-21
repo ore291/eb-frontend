@@ -2,30 +2,29 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import BlurberWallet from '../../components/bluberPages/BlurberWallet'
+import BluberWithdraw from '../../components/bluberPages/BluberWithdraw'
 
-const wallet: NextPage = () => {
+const withdraw: NextPage = () => {
 
     return (
         <div>
-            <Head>
+     <Head>
         <title>Easy Blurb</title>
         <link rel="icon" href="/favicon.ico" />
-        </Head>
+            </Head>
+                       
             
             <div className="flex flex-col min-h-screen overflow-auto text-center">
-                <Layout Page={'wallet'}>
-                   
-                  
-                <BlurberWallet />
-
+                <Layout Page={'withdraw'}>
+                <BluberWithdraw />
                 </Layout>
-                
+                </div>
 
-             </div>
-</div>
+        </div>
+    )
+ }
 
-  )
-}
 
-export default wallet
+
+
+export default withdraw

@@ -1,8 +1,12 @@
 import React from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 function BlurberWallet() {
   const { format } = new Intl.NumberFormat("en-Uk");
   let balance = format("4000000");
+  const router = useRouter();
+
   const payments = [
     {
       amount: "1500",
@@ -41,7 +45,7 @@ function BlurberWallet() {
     },
   ];
   return (
-    <div className="flex flex-col gap-16 min-h-screen h-full w-full bg-bgGray overflow-auto wallet  md:mb-0 md:w-8/12 mx-auto">
+    <div className="flex flex-col gap-16 min-h-screen md:h-full h-full w-full bg-bgGray overflow-aut0 wallet  md:mb-0 md:w-8/12 mx-auto">
       <div className="mx-auto w-full bg-[#f4f4f4] ">
         <div className=" flex text-center  overflow-hidden w-12/12 mx-auto justify-center items-center mt-3 rounded-xl h-[184px] bg-gradient-to- bg-radial-at-bl from-[#363636] via-blac to-[#191919]  bg-gradient-to-r shadow-lg">
           <div className="text-4xl flex flex-col bg-gradient-to-tr from-gray-100 to-gray-300 font-bold bg-clip-text text-transparent font-sans">
@@ -58,9 +62,11 @@ function BlurberWallet() {
             next withdrawal{" "}
             <span className="text-black font-black">10 feb 2021</span>
           </p>
-          <button className="w-2/4 mx-auto mt-5 rounded-md bg-lightOrng text-baseOrng  py-2 hover:bg-orange-200 hover:shadow-md duration-75">
-            Withdraw
-          </button>
+          <Link href="wallet/withdraw">
+            <button className="w-2/4 mx-auto mt-5 rounded-md bg-lightOrng text-baseOrng  py-2 hover:bg-orange-200 hover:shadow-md duration-75">
+              Withdraw
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -69,7 +75,7 @@ function BlurberWallet() {
           <span className="text-lg capitalize"> payment history</span>
           <span className="text-[#00A5FF]">see all</span>
         </div>
-        <div className="max-h-72 md:max-h-min overflow-auto wallet md:s scroll-pb-40">
+        <div className="max-h-72 md:max-h-min overflow-auto wallet md:s scroll-pb-0">
           {payments.map((payment) => (
             <div className="flex justify-between items-cente mb-2">
               <div className="flex flex-col px-1">

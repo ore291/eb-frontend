@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import { ProgressBar, checkIsFilled } from "../utils/utils";
 
 const RegisterForm = ({setUser}) => {
   const [userType, setUserType] = useState("");
+  const [userEmail, setUserEmail] = useState('')
 
   console.log(userType);
   return (
@@ -47,6 +49,10 @@ const RegisterForm = ({setUser}) => {
               <input
                 required
                 type="email"
+                name='user-email'
+                onChange={(e) => {
+                  setUserEmail(e.target.value)
+                }}
                 id="user-email"
                 spellCheck='false'
                 className="rounded-sm focus:bg-white px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
