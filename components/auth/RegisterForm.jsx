@@ -26,7 +26,7 @@ const RegisterForm = ({setUser}) => {
                     onChange={(e) => {
                       setUserType(e.target.value);
                     }}
-                    className="form-select py-3 appearance-none block w-full bg-[#F5F5F5]  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
+                    className="form-selec py-3 appearance-none block w-full bg-[#F5F5F5]  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   >
                     <option

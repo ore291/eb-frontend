@@ -1,10 +1,15 @@
-import React ,{useState} from 'react'
-import {BsInfoLg} from 'react-icons/bs'
+import React, { useState } from 'react'
+import Image from "next/image";
+import { BsInfoLg } from 'react-icons/bs'
+import { WithdrawModal,Spinner } from '../utils/utils'
+
 
 function BluberWithdraw() {
-    const [withdrawAmount, setWithdrawAmount] = useState()
+  const [withdrawAmount, setWithdrawAmount] = useState()
+  const [password, setPassword] = useState('')
+    const [showModal, setShowModal] = useState(false);
   return (
-    <div className="flex flex-col gap-9 min-h-screen md:h-full h-full w-full bg-bgGray overflow-aut0 wallet  md:mb-0 md:w-8/12 mx-auto">
+    <div className="flex flex-col gap- min-h-screen md:h-full h-full w-full bg-bgGray overflow-aut0 wallet  md:mb-0 md:w-8/12 mx-auto">
       <div className="text-start py-4 ">
         <p className="text-2xl ">Withdraw from wallet</p>
         <p className="text-baseOrng text-base py-2">
@@ -37,17 +42,25 @@ function BluberWithdraw() {
             type="password"
             name="password"
             onChange={(e) => {
-              setWithdrawAmount(e.target.value);
+              setPassword(e.target.value);
             }}
             id="password"
             className="rounded-xl px-4 py-5 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
             placeholder="Password"
           />
         </div>
-        <button className="block mt-36 text-center text-white bg-[#F67A01] p-3 duration-300 rounded-lg hover:bg-[#ff9900] w-full">
-          WITHDRAW TO BANK
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setShowModal(true);
+          }}
+          className="flex justify-center items-center absolute max-h-14  bottom-4 text-center text-white bg-baseOrng p-3 duration-300 rounded-lg hover:bg-[#ff9900] w-full md:w-8/12 md:mx-auto"
+        >
+          WITHDRAW TO BANK <div className='w-12 h-auto'><Spinner /></div>
         </button>
       </form>
+
+      <WithdrawModal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 }

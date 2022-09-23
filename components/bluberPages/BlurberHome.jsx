@@ -26,7 +26,7 @@ function BlurberHome() {
         " Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas eum iusto magnam obcaecati molestiae animi numquam cupiditate cum id, a quia nihil sapiente. Sequi sit obcaecati debitis quisquam tempora quidem",
     },
     {
-      cover: "https://placedog.net/500",
+      cover: "https://placedog.net/349",
       client: "israel padonu",
       description:
         " Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas eum iusto magnam obcaecati molestiae animi numquam cupiditate cum id, a quia nihil sapiente. Sequi sit obcaecati debitis quisquam tempora quidem",
@@ -40,7 +40,6 @@ function BlurberHome() {
             <div>
               Blurb<span className="text-[#C40505]">Jobs</span>
             </div>
-
 
 
             <div className="relative">
@@ -122,7 +121,7 @@ function BlurberHome() {
               onClick={() => setShowFilter(false)}
             ></div>
             <div
-              className={`absolute right-0 top-59 md:hidden z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+              className={`absolute right-0 top-30 md:hidden z-10 mt- w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
                 showFilter ? "block" : "hidden"
               }`}
               role="menu"

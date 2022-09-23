@@ -503,7 +503,7 @@ function BlurberMultiPartForm() {
                       value={maleViews}
                       autoFocus
                       id="whatsapp-male"
-                      className="rounded-lg px-auto focus:bg-white py-3 text-sm mt-3 outline-black bg-gray-100 w-2/4"
+                      className="rounded-lg px-auto focus:bg-white py-3 text-xs md:text-sm mt-3 outline-black bg-gray-100 w-3/4"
                       placeholder="Number of male viewers"
                     />
                     <input
@@ -515,7 +515,7 @@ function BlurberMultiPartForm() {
                       }}
                       autoFocus
                       id="whatsapp-female"
-                      className="rounded-lg px-aut focus:bg-white py-3 text-sm mt-3 outline-black bg-gray-100 w-2/4"
+                      className="rounded-lg px-aut focus:bg-white py-3 text-xs md:text-sm mt-3 outline-black bg-gray-100 w-3/4"
                       placeholder=" Number of female viewers
 "
                     />
@@ -629,7 +629,7 @@ function BlurberMultiPartForm() {
                   placeholder="Account Number"
                 />
 
-                <span>please input a correct value</span>
+                
 
                 <input
                   type="text"

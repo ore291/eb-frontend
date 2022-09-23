@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import states from "./states";
 import { BsUpload } from "react-icons/bs";
 import { useRouter } from "next/router";
@@ -137,7 +137,7 @@ export const ActiveLink =({ children, href }) =>{
   };
   const className = router.asPath.includes(href)
     ? "text-baseOrng"
-    : "text-black";
+    : "text-white";
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -152,6 +152,110 @@ export const ActiveLink =({ children, href }) =>{
     </div>
   );
 }
+
+export const WithdrawModal = ({showModal,setShowModal}) => {
+  
+  return (
+    <>
+      {showModal ? (
+        <>
+          <div className="justify-center items-cente mt-20 transition-all ease-in-out duration-200 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className="relative w-auto my- mx-auto max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex  justify-betwee p-3 rounded-t">
+                  <h3 className="text-xl font-semibold text-center mx-auto">
+                    Confirm Withdrawal
+                  </h3>
+                </div>
+                {/*body*/}
+                <div className="relative p- flex-auto">
+                  <p className="my-4 text-slate-500 text-lg leading-relaxed md:mx-2 md:px-2">
+                    Are you sure you want to withdraw the amount entered?
+                  </p>
+                </div>
+                {/*footer*/}
+                <div className="flex items-center justify-between p-6  rounded-b">
+                  <button
+                    className="text-baseOrng bg-lightOrng font-bold uppercase px-6 py-3 rounded text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="bg-baseOrng text-white  font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+    </>
+  );
+}
+
+ 
+ export const Spinner = () => {
+   return (
+<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" style={{margin: '0', background: 'none', display: 'flex', shapeRendering: 'auto'}} width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+  <g transform="rotate(0 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9090909090909091s" repeatCount="indefinite" />
+    </rect>
+  </g><g transform="rotate(32.72727272727273 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8181818181818182s" repeatCount="indefinite" />
+    </rect>
+  </g><g transform="rotate(65.45454545454545 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.7272727272727273s" repeatCount="indefinite" />
+    </rect>
+  </g><g transform="rotate(98.18181818181819 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6363636363636364s" repeatCount="indefinite" />
+    </rect>
+  </g><g transform="rotate(130.9090909090909 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5454545454545454s" repeatCount="indefinite" />
+    </rect>
+  </g><g transform="rotate(163.63636363636363 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.45454545454545453s" repeatCount="indefinite" />
+    </rect>
+  </g><g transform="rotate(196.36363636363637 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.36363636363636365s" repeatCount="indefinite" />
+    </rect>
+  </g><g transform="rotate(229.0909090909091 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.2727272727272727s" repeatCount="indefinite" />
+    </rect>
+  </g><g transform="rotate(261.8181818181818 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.18181818181818182s" repeatCount="indefinite" />
+    </rect>
+  </g><g transform="rotate(294.54545454545456 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.09090909090909091s" repeatCount="indefinite" />
+    </rect>
+  </g><g transform="rotate(327.27272727272725 50 50)">
+    <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
+      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite" />
+    </rect>
+  </g>
+</svg>
+
+   )
+ }
+ 
 
 
 

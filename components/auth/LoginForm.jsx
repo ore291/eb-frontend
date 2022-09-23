@@ -39,7 +39,7 @@ const LoginForm = () => {
                 </a>
               </div>
             </div>
-            <button className="block text-center text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full">
+            <button className="block text-center text-white bg-baseOrng p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full">
               Login
             </button>
           </form>
