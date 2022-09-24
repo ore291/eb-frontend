@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "../Header";
-import { VscBriefcase } from "react-icons/vsc";
-import { RiWallet3Line } from "react-icons/ri";
+import { GoPackage } from "react-icons/go";
+import { AiOutlineBars } from "react-icons/ai";
 import { MdOutlinePayments } from "react-icons/md";
 import { TiUserOutline } from "react-icons/ti";
 import { ActiveLink } from "../utils/utils";
 
-function Layout({ children, Page }) {
+function ClientLayout({ children, Page }) {
   return (
     <div>
       {/* <Header /> */}
@@ -144,7 +144,7 @@ function Layout({ children, Page }) {
           </div>
         </aside>
         <div className="flex-1 flex flex-col">
-          <nav className="px-4 flex justify-between md:justify-center mx-auto bg-whit bg-[#f2f2f2] h-16 ">
+          <nav className="px-4 flex justify-between md:justify-center mx-auto bg-whit bg-bgGray h-16 ">
             {/* top bar */}
             <ul className="flex items-center lg:hidden">
               {/* top bar left */}
@@ -174,7 +174,7 @@ function Layout({ children, Page }) {
 
           {/*main content*/}
 
-          <div className="relative mx-auto w-[90vw] bg-bgGray h-scree">
+          <div className="relative mx-auto w-[90vw] bg-bgGray h-full  ">
             {children}
           </div>
         </div>
@@ -190,21 +190,21 @@ function Layout({ children, Page }) {
 			overflow-hidden whitespace-no-wrap text-sm transition-colors
 			duration-100 ease-in-out hover:bg-gray-00 focus:text-orange-500"
           >
-            <ActiveLink href={`/jobs`}>
-              <VscBriefcase size={"30"} />
+            <ActiveLink href={`/products`}>
+              <GoPackage size={"30"} />
             </ActiveLink>
-            <span className="p-0 text-sm capitalize">jobs</span>
+            <span className="p-0 text-sm capitalize">Bundles</span>
           </div>
           <div
             className="flex flex-col flex-grow items-center justify-center
 			overflow-hidden whitespace-no-wrap text-sm transition-colors
 			duration-100 ease-in-out hover:bg-gray-00 t"
           >
-            <ActiveLink href={"/wallet"}>
-              <RiWallet3Line size={"30"} />
+            <ActiveLink href={"/plans"}>
+              <AiOutlineBars size={"30"} />
             </ActiveLink>
 
-            <span className="text-sm capitalize">wallet</span>
+            <span className="text-sm capitalize">plans</span>
           </div>
           <div
             className="flex flex-col flex-grow items-center justify-center
@@ -234,4 +234,4 @@ function Layout({ children, Page }) {
   );
 }
 
-export default Layout;
+export default ClientLayout;

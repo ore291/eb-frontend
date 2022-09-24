@@ -1,13 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { BsInfoLg } from 'react-icons/bs'
-import { WithdrawModal,Spinner } from '../utils/utils'
-
+import { BsInfoLg } from "react-icons/bs";
+import { ConfirmModal, SeenModal, Spinner } from "../utils/utils";
 
 function BluberWithdraw() {
-  const [withdrawAmount, setWithdrawAmount] = useState()
-  const [password, setPassword] = useState('')
-    const [showModal, setShowModal] = useState(false);
+  const [withdrawAmount, setWithdrawAmount] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [password, setPassword] = useState("");
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showSeen, setShowSeen] = useState(false);
+
+
+  if (isLoading) {
+    setTimeout(() => {
+      setIsLoading(false);
+
+      setShowSeen(true);
+    }, 5000);
+    clearTimeout();
+  }
+
+  
+
+
+  
   return (
     <div className="flex flex-col gap- min-h-screen md:h-full h-full w-full bg-bgGray overflow-aut0 wallet  md:mb-0 md:w-8/12 mx-auto">
       <div className="text-start py-4 ">
@@ -52,17 +68,40 @@ function BluberWithdraw() {
         <button
           onClick={(e) => {
             e.preventDefault();
-            setShowModal(true);
+            setShowConfirm(true);
           }}
-          className="flex justify-center items-center absolute max-h-14  bottom-4 text-center text-white bg-baseOrng p-3 duration-300 rounded-lg hover:bg-[#ff9900] w-full md:w-8/12 md:mx-auto"
+          className="flex justify-center h-12  items-center absolute max-h-14 text-lg  bottom-4 text-center text-white bg-baseOrng p-3 duration-300 rounded-lg hover:bg-[#ff9900] w-full md:w-8/12 md:mx-auto"
         >
-          WITHDRAW TO BANK <div className='w-12 h-auto'><Spinner /></div>
+          {!isLoading ? (
+            "WITHDRAW TO BANK"
+          ) : (
+            <div className="w-32 justify-center items-center gap-3  flex overflow-visible ">
+              <div className="w-2/4 text-lg capitalize">processing</div>
+              <div className="w-2/4 h-full">
+                {" "}
+                <Spinner />
+              </div>
+            </div>
+          )}
         </button>
       </form>
 
-      <WithdrawModal showModal={showModal} setShowModal={setShowModal} />
+      <ConfirmModal
+        showModal={showConfirm}
+        setShowModal={setShowConfirm}
+        setshowSeen={setIsLoading}
+        title={"confirm transfer"}
+        body={"Are you sure you want to withdraw the amount entered?"}
+      />
+
+      <SeenModal
+        showModal={showSeen}
+        setShowModal={setShowSeen}
+        title={"Sent"}
+        body={"Your funds has been sent to your bank account"}
+      />
     </div>
   );
 }
 
-export default BluberWithdraw
+export default BluberWithdraw;

@@ -177,7 +177,7 @@ function Layout({ children ,Page}) {
 
           {/*main content*/}
 
-          <div className="relative mx-auto w-[90vw] bg-bgGray h-scree">
+          <div className="relative mx-auto w-[90vw] bg-bgGray h-full">
             {children}
           </div>
         </div>

@@ -65,10 +65,6 @@ export const checkIsFilled = (num, a, b, c, d, e, f) => {
     default:
       break;
   }
-  // a = a ||null
-  // b = b || null;
-  // c = c || null;
-  // d = d || true;
 
   if (a && b && c && d && e && f) return true;
   return false;
@@ -129,10 +125,9 @@ export const JobsCard = ({ cover, description, client, status }) => {
   );
 };
 
-export const ActiveLink =({ children, href }) =>{
+export const ActiveLink = ({ children, href }) => {
   const router = useRouter();
   const style = {
-    
     color: router.asPath.includes(href) ? "" : "black",
   };
   const className = router.asPath.includes(href)
@@ -146,48 +141,108 @@ export const ActiveLink =({ children, href }) =>{
 
   return (
     <div>
-      <a href={href} onClick={handleClick} style={style}  className={className}>
+      <a href={href} onClick={handleClick} style={style} className={className}>
         {children}
       </a>
     </div>
   );
-}
+};
 
-export const WithdrawModal = ({showModal,setShowModal}) => {
-  
+
+export const ConfirmModal = ({
+  showModal,
+  setShowModal,
+  setshowSeen,
+  title,
+  body,
+}) => {
   return (
     <>
       {showModal ? (
         <>
-          <div className="justify-center items-cente mt-20 transition-all ease-in-out duration-200 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="justify-center items-center  transition-all ease-in-out duration-200 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my- mx-auto max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex  justify-betwee p-3 rounded-t">
                   <h3 className="text-xl font-semibold text-center mx-auto">
-                    Confirm Withdrawal
+                    {title}
                   </h3>
                 </div>
                 {/*body*/}
                 <div className="relative p- flex-auto">
-                  <p className="my-4 text-slate-500 text-lg leading-relaxed md:mx-2 md:px-2">
-                    Are you sure you want to withdraw the amount entered?
+                  <p className="my-4 text-slate-500 text-lg leading-relaxed md:mx-2 md:px-2 mx-2">
+                    {/* Are you sure you want to withdraw the amount entered? */}
+                    {body}
                   </p>
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-between p-6  rounded-b">
-                  <button
-                    className="text-baseOrng bg-lightOrng font-bold uppercase px-6 py-3 rounded text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Cancel
-                  </button>
+                
+                  <div className="flex items-center justify-between p-6  rounded-b">
+                    <button
+                      className="text-baseOrng bg-lightOrng font-bold uppercase px-6 py-3 rounded text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => setShowModal(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className="bg-baseOrng text-white  font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => {
+                        setShowModal(false);
+                        setshowSeen(true)
+                      }}
+                    >
+                      Confirm
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+    </>
+  );
+};
+
+
+export const SeenModal = ({ showModal, setShowModal, title, body }) => {
+  return (
+    <>
+      {showModal ? (
+        <>
+          <div className="justify-center items-center mt-20 transition-all ease-in-out duration-200 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className="relative w-auto my- mx-auto max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex  justify-betwee p-3 rounded-t">
+                  <h3 className="text-xl font-semibold text-center mx-auto">
+                    {title}
+                  </h3>
+                </div>
+                {/*body*/}
+                <div className="relative p- flex-auto">
+                  <p className="my-4 text-slate-500 text-lg leading-relaxed md:mx-2 md:px-2 mx-2">
+                    
+                    {body}
+                  </p>
+                </div>
+                {/*footer*/}
+
+                <div className="flex items-center justify-center p-6  rounded-b">
+
                   <button
                     className="bg-baseOrng text-white  font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      setShowModal(false);
+                    
+                    }}
                   >
                     Confirm
                   </button>
@@ -200,12 +255,12 @@ export const WithdrawModal = ({showModal,setShowModal}) => {
       ) : null}
     </>
   );
-}
+};
 
  
  export const Spinner = () => {
    return (
-<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" style={{margin: '0', background: 'none', display: 'flex', shapeRendering: 'auto'}} width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" style={{margin: '0', background: 'none', display: 'flex', shapeRendering: 'auto'}} width="100%" height="200%" viewBox=" 0 0 100 100" preserveAspectRatio="xMidYMid">
   <g transform="rotate(0 50 50)">
     <rect x="46.5" y="27.5" rx="2.5500000000000003" ry="2.5500000000000003" width={7} height={15} fill="#f4f4f4">
       <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9090909090909091s" repeatCount="indefinite" />
@@ -256,6 +311,14 @@ export const WithdrawModal = ({showModal,setShowModal}) => {
    )
  }
  
+export const nairaFormatter = (number) => {
+    const { format } = new Intl.NumberFormat("en-Uk");
+  let balance = format(number);
+  
+  
+  return <span> &#8358;{balance }</span>;
+   
+ }
 
 
 

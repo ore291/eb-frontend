@@ -1,12 +1,12 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import {nairaFormatter} from '../utils/utils'
 
 function BlurberWallet() {
-  const { format } = new Intl.NumberFormat("en-Uk");
-  let balance = format("4000000");
+
   var twoWeeks = new Date(+new Date() + 12096e5).toDateString();
-  console.log(twoWeeks);
+  //console.log(twoWeeks);
   const router = useRouter();
 
   const payments = [
@@ -51,7 +51,7 @@ function BlurberWallet() {
       <div className="mx-auto w-full bg-[#f4f4f4] ">
         <div className=" flex text-center  overflow-hidden w-12/12 mx-auto justify-center items-center mt-3 rounded-xl h-[184px] bg-gradient-to- bg-radial-at-bl from-[#363636] via-blac to-[#191919]  bg-gradient-to-r shadow-lg">
           <div className="text-4xl flex flex-col bg-gradient-to-tr from-gray-100 to-gray-300 font-bold bg-clip-text text-transparent font-sans">
-            <span className=""> &#8358;{balance}</span>
+            <span className="">{nairaFormatter('400000')}</span>
             <span className="text-sm"> your wallet balance</span>
           </div>
         </div>
@@ -84,7 +84,7 @@ function BlurberWallet() {
             <div className="flex justify-between  mb-2">
               <div className="flex flex-col px-1">
                 <span className="text-[#EA4A2B] text-2xl font-medium text-start">
-                  &#8358;{format(payment.amount)}
+                  {nairaFormatter(payment.amount)}
                 </span>
                 <span className="text-xs text-baseGray opacity-80">
                   {payment.date}

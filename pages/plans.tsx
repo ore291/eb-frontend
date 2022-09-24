@@ -1,11 +1,10 @@
-
-import Layout from '../components/layouts/BlurberLayout'
+import ClientLayout from '../components/layouts/ClientLayout'
 import type { NextPage } from 'next'
 import Header from '../components/Header'
 import Head from 'next/head'
-import BlurberPayments from '../components/bluberPages/BlurberPayments'
+import ClientPlans from '../components/clientPages/ClientPlans'
 
-const payment :NextPage = () => {
+const plans :NextPage = () => {
   return (
       <div>
           <Head>
@@ -15,11 +14,11 @@ const payment :NextPage = () => {
 
 
             <div className="flex flex-col min-h-screen overflow-auto text-center">
-              <Layout Page={'payments'}>
-                  <BlurberPayments />
+              <ClientLayout Page={'Active Plans'}>
+                  <ClientPlans />
                    
 
-                </Layout>
+                </ClientLayout>
                 
 
              </div>
@@ -30,4 +29,4 @@ const payment :NextPage = () => {
   )
 }
 
-export default payment
+export default plans
