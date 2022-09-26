@@ -27,9 +27,9 @@ function ClientPlans() {
   ];
   return (
     <div className="h-screen bg-bgGray">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 mt-6  bg-bgGray ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 md:gap-x-3 mt-6  bg-bgGray ">
         {packs.map((pack, key) => (
-          <div className="bg-white p-5" key={key}>
+          <div className="bg-white p-5 md:p-3" key={key}>
             <div className="text-start text-lg font-bold capitalize">
               {pack.title}
             </div>
@@ -49,12 +49,15 @@ function ClientPlans() {
             </ul>
             <p className="font-bold text-start text-lg ">
               {"Total Uploads : "}
-              <span className="text-baseOrng font-extrabold text-xl">{pack.totalUploads}</span>
+              <span className="text-baseOrng font-extrabold text-xl">
+                {pack.totalUploads}
+              </span>
             </p>
-            
-            <button className="bg-lightOrng mt-3 mb-0 text-baseOrng rounded-lg mx-auto w-full md:w-9/12 p-3 text-lg font-bold">
-              Upload Blurb Material
-            </button>
+            <Link href={"plans/upload"}>
+              <button className="bg-lightOrng mt-3 mb-0 text-baseOrng rounded-lg mx-auto w-full md:w-9/12 p-3 text-lg font-bold">
+                Upload Blurb Material
+              </button>
+            </Link>
           </div>
         ))}
       </div>

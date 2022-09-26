@@ -5,6 +5,7 @@ import { AiOutlineBars } from "react-icons/ai";
 import { MdOutlinePayments } from "react-icons/md";
 import { TiUserOutline } from "react-icons/ti";
 import { ActiveLink } from "../utils/utils";
+import {FiUpload} from 'react-icons/fi'
 
 function ClientLayout({ children, Page }) {
   return (
@@ -159,8 +160,8 @@ function ClientLayout({ children, Page }) {
             <ul className="flex items-center">
               {/* top bar center */}
               <li>
-                <span className="text-2xl text-center md:w-full font-silka font-black capitalize text-[#2A3A64]">
-                  {" "}
+                <span className="text-2xl text-center mx-auto  flex justify-center  md:w-full font-silka font-black capitalize text-[#2A3A64]">
+                  
                   {Page}
                 </span>
               </li>
@@ -211,11 +212,11 @@ function ClientLayout({ children, Page }) {
 			overflow-hidden whitespace-no-wrap text-sm transition-colors
 			duration-100 ease-in-out hover:bg-gray-00 focus:text-orane-500"
           >
-            <ActiveLink href="/payments">
-              <MdOutlinePayments size={"30"} />
+            <ActiveLink href="/uploads">
+              <FiUpload size={"30"} />
             </ActiveLink>
 
-            <span className=" text-sm capitalize">payments</span>
+            <span className=" text-sm capitalize">uploads</span>
           </div>
           <div
             className="flex flex-col flex-grow items-center justify-center

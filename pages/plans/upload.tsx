@@ -1,10 +1,10 @@
-import ClientLayout from '../components/layouts/ClientLayout'
+import ClientLayout from '../../components/layouts/ClientLayout'
 import type { NextPage } from 'next'
-import Header from '../components/Header'
+import Header from '../../components/Header'
 import Head from 'next/head'
-import ClientPlans from '../components/clientPages/ClientPlans'
+import ClientUpload from '../../components/clientPages/ClientUpload'
 
-const plans :NextPage = () => {
+const upload :NextPage = () => {
   return (
       <div>
           <Head>
@@ -14,8 +14,8 @@ const plans :NextPage = () => {
 
 
             <div className="flex flex-col min-h-screen overflow-auto text-center">
-              <ClientLayout Page={'Active Plans'}>
-                  <ClientPlans />
+              <ClientLayout Page={'Upload Blurb'}>
+                  <ClientUpload />
                    
 
                 </ClientLayout>
@@ -29,4 +29,4 @@ const plans :NextPage = () => {
   )
 }
 
-export default plans
+export default upload

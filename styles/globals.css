@@ -8,6 +8,11 @@
    
   }
 
+  .uploads::-webkit-scrollbar  {
+    display: none;
+   
+  }
+
 
 
 
