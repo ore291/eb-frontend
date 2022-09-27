@@ -1,6 +1,7 @@
 import  { useState, useEffect } from "react";
 import states from "../utils/states";
 import { BsUpload } from "react-icons/bs";
+import {UploadModal} from '../utils/utils'
 
 function ClientUpload() {
   const statesList = Object.keys(states).map((state, i) => ({
@@ -14,6 +15,8 @@ function ClientUpload() {
 
   const [caption, setCaption] = useState("");
   const [link, setLink] = useState("");
+
+   const [showUploadModal,setShowUploadModal]=useState(false)
 
   const handleClick = (event, index) => {
     const newArr = state.map((obj) => {
@@ -48,8 +51,8 @@ function ClientUpload() {
   }, [state]);
 
   return (
-    <div className="h-full bg-bgGray flex flex-col gap-12">
-      <div>
+    <div className="h-full bg-bgGray  flex flex-col gap-12 mx-auto">
+      <div className="w-full">
         <form
           action=""
           method="post"
@@ -89,7 +92,7 @@ function ClientUpload() {
               </span>
             </div>
             <input
-              className="form-control f"
+              className="form-control "
               style={{ display: "none" }}
               type="file"
               accept="image/png, image/gif, image/jpeg ,image/webp"
@@ -152,14 +155,24 @@ function ClientUpload() {
             </div>
           </div>
           <button
-            onClick={(e)=>{
-              e.preventDefault()
-
+            onClick={(e) => {
+              e.preventDefault();
+              setShowUploadModal(true);
             }}
-            className="w-full absolut my-3 rounded-lg bottom-0 bg-baseOrng text-white  p-3  ">
+            className="w-full absolut my-3 rounded-lg bottom-0 bg-baseOrng text-white  p-3  "
+          >
             Upload
           </button>
         </form>
+      </div>
+      <div>
+        <UploadModal
+          className=""
+          showModal={showUploadModal}
+          setShowModal={setShowUploadModal}
+          title={"Upload"}
+          body={"Blurb uploaded sucessfully"}
+        />
       </div>
     </div>
   );

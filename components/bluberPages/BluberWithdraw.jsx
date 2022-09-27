@@ -25,7 +25,7 @@ function BluberWithdraw() {
 
   
   return (
-    <div className="flex flex-col gap- min-h-screen md:h-full h-full w-full bg-bgGray overflow-aut0 wallet  md:mb-0 md:w-8/12 mx-auto">
+    <div className="flex flex-col  min-h-screen  h-full w-full bg-bgGray overflow-auto wallet  md:mb-0 md:w-8/12 mx-auto">
       <div className="text-start py-4 ">
         <p className="text-2xl ">Withdraw from wallet</p>
         <p className="text-baseOrng text-base py-2">

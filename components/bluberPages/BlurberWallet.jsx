@@ -75,13 +75,13 @@ function BlurberWallet() {
       <div className=" bg-white rounded-xl ">
         <div className="flex justify-between py-4 px-2">
           <span className="text-lg capitalize"> payment history</span>
-          <Link href="/payment">
+          <Link href="/payments">
             <span className="text-[#00A5FF]">see all</span>
           </Link>
         </div>
         <div className="max-h-72 md:max-h-min overflow-auto wallet md:s scroll-pb-0">
-          {payments.map((payment) => (
-            <div className="flex justify-between  mb-2">
+          {payments.map((payment,index) => (
+            <div className="flex justify-between  mb-2" key={index}>
               <div className="flex flex-col px-1">
                 <span className="text-[#EA4A2B] text-2xl font-medium text-start">
                   {nairaFormatter(payment.amount)}

@@ -127,12 +127,10 @@ export const JobsCard = ({ cover, description, client, status }) => {
 
 export const ActiveLink = ({ children, href }) => {
   const router = useRouter();
-  const style = {
-    color: router.asPath.includes(href) ? "" : "black",
-  };
+  
   const className = router.asPath.includes(href)
     ? "text-baseOrng"
-    : "text-white";
+    : "text-black";
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -141,7 +139,7 @@ export const ActiveLink = ({ children, href }) => {
 
   return (
     <div>
-      <a href={href} onClick={handleClick} style={style} className={className}>
+      <a href={href} onClick={handleClick}  className={className}>
         {children}
       </a>
     </div>
@@ -163,7 +161,7 @@ export const ConfirmModal = ({
           <div className="justify-center items-center  transition-all ease-in-out duration-200 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my- mx-auto max-w-3xl">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-11/12 mx-auto bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex  justify-betwee p-3 rounded-t">
                   <h3 className="text-xl font-semibold text-center mx-auto">
@@ -178,31 +176,35 @@ export const ConfirmModal = ({
                   </p>
                 </div>
                 {/*footer*/}
-                
-                  <div className="flex items-center justify-between p-6  rounded-b">
-                    <button
-                      className="text-baseOrng bg-lightOrng font-bold uppercase px-6 py-3 rounded text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={() => setShowModal(false)}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      className="bg-baseOrng text-white  font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={() => {
-                        setShowModal(false);
-                        setshowSeen(true)
-                      }}
-                    >
-                      Confirm
-                    </button>
-                  </div>
-                
+
+                <div className="flex items-center justify-between p-6  rounded-b">
+                  <button
+                    className="text-baseOrng bg-lightOrng font-bold uppercase px-6 py-3 rounded text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="bg-baseOrng text-white  font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => {
+                      setShowModal(false);
+                      setshowSeen(true);
+                    }}
+                  >
+                    Confirm
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <div
+            className="opacity-25 fixed inset-0 z-40 bg-black"
+            onClick={() => {
+              setShowModal(false);
+            }}
+          ></div>
         </>
       ) : null}
     </>
@@ -218,7 +220,7 @@ export const SeenModal = ({ showModal, setShowModal, title, body }) => {
           <div className="justify-center items-center mt-20 transition-all ease-in-out duration-200 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my- mx-auto max-w-3xl">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-11/12 mx-auto bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex  justify-betwee p-3 rounded-t">
                   <h3 className="text-xl font-semibold text-center mx-auto">
@@ -227,24 +229,70 @@ export const SeenModal = ({ showModal, setShowModal, title, body }) => {
                 </div>
                 {/*body*/}
                 <div className="relative p- flex-auto">
-                  <p className="my-4 text-slate-500 text-lg leading-relaxed md:mx-2 md:px-2 mx-2">
-                    
+                  <p className="my-2 text-slate-500 text-lg leading-relaxed md:mx-2 md:px-2 mx-2">
+                    {body}
+                  </p>
+                </div>
+                {/*footer*/}
+
+                <div className="flex items-center justify-center p-4  rounded-b">
+                  <button
+                    className="bg-baseOrng text-white  font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => {
+                      setShowModal(false);
+                    }}
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="opacity-25 fixed inset-0 z-40 bg-black"
+            onClick={() => {
+              setShowModal(false);
+            }}
+          ></div>
+        </>
+      ) : null}
+    </>
+  );
+};
+
+export const UploadModal = ({ showModal, setShowModal, title, body }) => {
+  return (
+    <>
+      {showModal ? (
+        <>
+          <div className="justify-center w-full  items-center mt-20 transition-all ease-in-out duration-200 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className="relative w-auto my- mx-auto max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex  p-3 rounded-t">
+                  <h3 className="text-xl font-semibold text-center mx-auto">
+                    {title}
+                  </h3>
+                </div>
+                {/*body*/}
+                <div className="relative px-12 flex-auto">
+                  <p className="my-4 w-full text-slate-500 text-lg leading-relaxed md:mx-2 md:px-2 mx-2">
                     {body}
                   </p>
                 </div>
                 {/*footer*/}
 
                 <div className="flex items-center justify-center p-6  rounded-b">
-
                   <button
                     className="bg-baseOrng text-white  font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => {
                       setShowModal(false);
-                    
                     }}
                   >
-                    Confirm
+                    Start Blurb
                   </button>
                 </div>
               </div>

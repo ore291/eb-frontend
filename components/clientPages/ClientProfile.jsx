@@ -1,16 +1,17 @@
-import React from "react";
+import React from 'react';
 import Image from "next/image";
 import { TbLock } from "react-icons/tb";
 
-function BlurberProfile() {
-  const user = {
-    lastName: "Padonu",
-    firstName: "israel",
-    email: "israelpadonu13@gmail.com",
-    phone: "08057880646",
-  };
+
+function ClientProfile() {
+     const company = {
+         name: "Betway",
+         rep:'john doe',
+       email: "israelpadonu13@gmail.com",
+       contact: "08057880646",
+     };
   return (
-    <div className="flex flex-col gap-1 min-h-screen md:h-full h-full w-full bg-bgGray overflow-aut0 wallet  md:mb-0 md:w-8/12 mx-auto">
+    <div className="text-center bg-bgGray min-h-screen overflow-auto ">
       <div className="w-full flex gap-1 items-center justify-start">
         <div className="rounded-xl w-3/12 py-6">
           <Image
@@ -29,22 +30,34 @@ function BlurberProfile() {
           </p>
         </div>
       </div>
-      <div className="bg-white flex flex-col gap-3 h-fit py-6 px-4 rounded-lg  ">
+      <div className="bg-white/90 flex flex-col gap-3 h-fit py-4 px-4 rounded-lg  ">
         <div className="bg-bgGray flex text-start flex-col">
-          <span className="text-slate-400 text-sm pl-3 py-1">Full Name </span>
+          <span className="text-slate-400 text-sm pl-3 py-1">
+            Name of Company
+          </span>
           <h3 className="capitalize font-semibold pl-3 pb-2 text-lg">
-            {user.lastName + " " + user.firstName}
+            {company.name}
           </h3>
         </div>
         <div className="bg-bgGray flex text-start flex-col">
-          <span className="text-slate-400 text-sm pl-3 py-1">Email </span>
-          <h3 className=" font-semibold pl-3 pb-2 text-lg">{user.email}</h3>
+          <span className="text-slate-400 text-sm pl-3 py-1">
+            Name of Company's Representative
+          </span>
+          <h3 className="capitalize font-semibold pl-3 pb-2 text-lg">
+            {company.rep}
+          </h3>
         </div>
         <div className="bg-bgGray flex text-start flex-col">
           <span className="text-slate-400 text-sm pl-3 py-1">
-            Phone Number{" "}
+            Email of Company's representative{" "}
           </span>
-          <h3 className=" font-semibold pl-3 pb-2 text-lg">{user.phone}</h3>
+          <h3 className=" font-semibold pl-3 pb-2 text-lg">{company.email}</h3>
+        </div>
+        <div className="bg-bgGray flex text-start flex-col">
+          <span className="text-slate-400 text-sm pl-3 py-1">
+            Contact of Company's representative{" "}
+          </span>
+          <h3 className=" font-semibold pl-3 pb-2 text-lg">{company.contact}</h3>
         </div>
       </div>
       <div className="w-full flex gap-4 items-center justify-start">
@@ -59,10 +72,7 @@ function BlurberProfile() {
         </div>
       </div>
       <div className="bg-white flex flex-col gap-3 h-fit py-6 px-4 rounded-lg  ">
-        <form
-          action=""
-          className="flex flex-col gap-3 h-fit  rounded-lg"
-        >
+        <form action="" className="flex flex-col gap-3 h-fit  rounded-lg">
           {" "}
           <div className="flex text-start flex-col">
             <input
@@ -82,7 +92,6 @@ function BlurberProfile() {
           </div>
           <button className="block text-center text-white bg-baseOrng p-3 duration-300 rounded-lg hover:bg-[#ff9900] ">
             Change Password
-
           </button>
         </form>
       </div>
@@ -90,4 +99,4 @@ function BlurberProfile() {
   );
 }
 
-export default BlurberProfile;
+export default ClientProfile
