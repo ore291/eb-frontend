@@ -320,17 +320,21 @@ function BlurberMultiPartForm() {
     const [showErrMsg, setshowErrMsg] = useState(false);
 
     return (
-      <motion.div className="mt-12 md:mt-32"
-            initial={{ opacity: 0,   }}
-      animate={{ opacity: 1 ,
-        x:0,
-         transition: {
-      duration: 0.5,
-      type: "ease",
-      damping: 25,
-      stiffness: 500,
-    }, }}
-      exit={{ opacity: 0 ,x:window.innerWidth }}>
+      <motion.div
+        className="mt-12 md:mt-32"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 0.5,
+            type: "ease",
+            damping: 25,
+            stiffness: 500,
+          },
+        }}
+        exit={{ opacity: 0, x: window.innerWidth }}
+      >
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -348,7 +352,7 @@ function BlurberMultiPartForm() {
                   name="numbers-contact"
                   value={numofcontacts}
                   onChange={(e) => {
-                    setnumofcontacts(e.target.value)
+                    setnumofcontacts(e.target.value);
                     setshowErrMsg(false);
                   }}
                   autoFocus
@@ -413,10 +417,10 @@ function BlurberMultiPartForm() {
                   type="text"
                   name="occupation"
                   onChange={(e) => {
-                    setoccupation(e.target.value)
+                    setoccupation(e.target.value);
                     setshowErrMsg(false);
                   }}
-                  autofocus
+                  autoFocus
                   id="occupation"
                   className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
                   placeholder="Occupation"
@@ -425,7 +429,6 @@ function BlurberMultiPartForm() {
                   onChange={(e) => {
                     setEducation(e.target.value);
                     setshowErrMsg(false);
-
                   }}
                   className="form-select py-3 text-start 	 mt-5 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -470,7 +473,7 @@ function BlurberMultiPartForm() {
                     )
                   ) {
                     setPage(page + 1);
-                  }else{
+                  } else {
                     setshowErrMsg(true);
                   }
                 }}

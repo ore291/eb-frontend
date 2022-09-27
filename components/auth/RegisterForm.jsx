@@ -56,7 +56,7 @@ const RegisterForm = ({setUser}) => {
                 id="user-email"
                 spellCheck='false'
                 className="rounded-sm focus:bg-white px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
-                placeholder="email "
+                placeholder="Email "
               />
             </div>
           </form>
