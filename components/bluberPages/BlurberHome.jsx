@@ -26,7 +26,7 @@ function BlurberHome() {
         " Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas eum iusto magnam obcaecati molestiae animi numquam cupiditate cum id, a quia nihil sapiente. Sequi sit obcaecati debitis quisquam tempora quidem",
     },
     {
-      cover: "https://placedog.net/349",
+      cover: "https://placedog.net/500",
       client: "israel padonu",
       description:
         " Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas eum iusto magnam obcaecati molestiae animi numquam cupiditate cum id, a quia nihil sapiente. Sequi sit obcaecati debitis quisquam tempora quidem",

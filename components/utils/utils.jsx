@@ -1,5 +1,6 @@
 import {useState} from "react";
 import states from "./states";
+import {motion} from 'framer-motion'
 import { BsUpload } from "react-icons/bs";
 import { useRouter } from "next/router";
 
@@ -154,17 +155,53 @@ export const ConfirmModal = ({
   title,
   body,
 }) => {
+  
+const dropIn = {
+  hidden: {
+    y: "-100vh",
+    opacity: 0,
+  },
+  visible: {
+    y: "0",
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
+    },
+  },
+  exit: {
+    y: "100vh",
+    opacity: 0,
+    transition: {
+      duration: 0.2,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
+    },
+  },
+};
   return (
     <>
       {showModal ? (
         <>
-          <div className="justify-center items-center  transition-all ease-in-out duration-200 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <motion.div
+            className="justify-center items-center   flex overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            variants={dropIn}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
             <div className="relative w-auto my- mx-auto max-w-3xl">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-11/12 mx-auto bg-white outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full mx-auto bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex  justify-betwee p-3 rounded-t">
-                  <h3 className="text-xl font-semibold text-center mx-auto">
+                  <h3 className="text-xl font-semibold text-center mx-auto capitalize">
                     {title}
                   </h3>
                 </div>
@@ -181,7 +218,7 @@ export const ConfirmModal = ({
                   <button
                     className="text-baseOrng bg-lightOrng font-bold uppercase px-6 py-3 rounded text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {setShowModal(false)}}
                   >
                     Cancel
                   </button>
@@ -198,13 +235,16 @@ export const ConfirmModal = ({
                 </div>
               </div>
             </div>
-          </div>
-          <div
+          </motion.div>
+          <motion.div
             className="opacity-25 fixed inset-0 z-40 bg-black"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.5 }}
+            exit={{ opacity: 0 }}
             onClick={() => {
               setShowModal(false);
             }}
-          ></div>
+          ></motion.div>
         </>
       ) : null}
     </>
@@ -213,14 +253,50 @@ export const ConfirmModal = ({
 
 
 export const SeenModal = ({ showModal, setShowModal, title, body }) => {
+    
+const dropIn = {
+  hidden: {
+    y: "-100vh",
+    opacity: 0,
+  },
+  visible: {
+    y: "0",
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
+    },
+  },
+  exit: {
+    y: "100vh",
+    opacity: 0,
+    transition: {
+      duration: 0.2,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
+    },
+  },
+};
   return (
     <>
       {showModal ? (
         <>
-          <div className="justify-center items-center mt-20 transition-all ease-in-out duration-200 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <motion.div
+            className="justify-center items-center   flex overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            variants={dropIn}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
             <div className="relative w-auto my- mx-auto max-w-3xl">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-11/12 mx-auto bg-white outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col  mx-auto bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex  justify-betwee p-3 rounded-t">
                   <h3 className="text-xl font-semibold text-center mx-auto">
@@ -248,13 +324,16 @@ export const SeenModal = ({ showModal, setShowModal, title, body }) => {
                 </div>
               </div>
             </div>
-          </div>
-          <div
+          </motion.div>
+          <motion.div
             className="opacity-25 fixed inset-0 z-40 bg-black"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.5 }}
+            exit={{ opacity: 0 }}
             onClick={() => {
               setShowModal(false);
             }}
-          ></div>
+          ></motion.div>
         </>
       ) : null}
     </>
@@ -262,11 +341,47 @@ export const SeenModal = ({ showModal, setShowModal, title, body }) => {
 };
 
 export const UploadModal = ({ showModal, setShowModal, title, body }) => {
+      
+const dropIn = {
+  hidden: {
+    y: "-100vh",
+    opacity: 0,
+  },
+  visible: {
+    y: "0",
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
+    },
+  },
+  exit: {
+    y: "100vh",
+    opacity: 0,
+    transition: {
+      duration: 0.2,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
+    },
+  },
+};
   return (
     <>
       {showModal ? (
         <>
-          <div className="justify-center w-full  items-center mt-20 transition-all ease-in-out duration-200 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <motion.div
+            className="justify-center items-center   flex overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            variants={dropIn}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
             <div className="relative w-auto my- mx-auto max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -297,8 +412,16 @@ export const UploadModal = ({ showModal, setShowModal, title, body }) => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          </motion.div>
+          <motion.div
+            className="opacity-25 fixed inset-0 z-40 bg-black"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.5 }}
+            exit={{ opacity: 0 }}
+            onClick={() => {
+              setShowModal(false);
+            }}
+          ></motion.div>
         </>
       ) : null}
     </>

@@ -2,6 +2,7 @@ import  { useState, useEffect } from "react";
 import states from "../utils/states";
 import { BsUpload } from "react-icons/bs";
 import {UploadModal} from '../utils/utils'
+import { AnimatePresence } from "framer-motion";
 
 function ClientUpload() {
   const statesList = Object.keys(states).map((state, i) => ({
@@ -166,13 +167,15 @@ function ClientUpload() {
         </form>
       </div>
       <div>
-        <UploadModal
-          className=""
-          showModal={showUploadModal}
-          setShowModal={setShowUploadModal}
-          title={"Upload"}
-          body={"Blurb uploaded sucessfully"}
-        />
+        <AnimatePresence>
+          <UploadModal
+            className=""
+            showModal={showUploadModal}
+            setShowModal={setShowUploadModal}
+            title={"Upload"}
+            body={"Blurb uploaded sucessfully"}
+          />
+        </AnimatePresence>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import states from "../utils/states";
 import { ProgressBar, checkIsFilled } from "../utils/utils";
 import { verifyPhoneNumber } from "nigerian-phone-number-validator";
+import { motion,AnimatePresence  } from "framer-motion";
 
 function BlurberMultiPartForm() {
   // function to select nigeria state and lga
@@ -30,9 +31,13 @@ function BlurberMultiPartForm() {
     };
 
     return (
-      <div>
+      <motion.div layout onClick={(e)=>e.stopPropagation()}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}>
         <select
-          onChange={(e) => handleStateSelect(e)}
+          onChange={(e) => {handleStateSelect(e)
+          e.preventDefault()}}
           className="form-select py-3 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           value={naijaState}
@@ -58,7 +63,7 @@ function BlurberMultiPartForm() {
             </option>
           ))}
         </select>
-      </div>
+      </motion.div>
     );
   };
 
@@ -72,7 +77,18 @@ function BlurberMultiPartForm() {
     const [showErrMsg, setshowErrMsg] = useState(false);
 
     return (
-      <div className="mt-12 md:mt-32">
+      <motion.div className="mt-12 md:mt-32"
+      initial={{ opacity: 0,   }}
+      animate={{ opacity: 1 ,
+        x:0,
+         transition: {
+      duration: 0.5,
+      type: "ease",
+      damping: 25,
+      stiffness: 500,
+    }, }}
+      exit={{ opacity: 0 ,x:window.innerWidth }}
+>
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500 ">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -204,7 +220,7 @@ function BlurberMultiPartForm() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -213,7 +229,19 @@ function BlurberMultiPartForm() {
     const [showErrMsg, setshowErrMsg] = useState(false);
 
     return (
-      <div className="mt-12 md:mt-32">
+      <motion.div className="mt-12 md:mt-32" layout     
+            initial={{ opacity: 0,   }}
+            o
+      animate={{ opacity: 1 ,
+        x:0,
+         transition: {
+      duration: 0.1,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
+    }, }}
+      exit={{ opacity: 0 ,x:window.innerWidth }}
+>
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -240,8 +268,11 @@ function BlurberMultiPartForm() {
                   placeholder="City"
                 />
               </div>
+              <AnimatePresence initial={false} exitBeforeEnter={true}>
+                              <SelectState set={setshowErrMsg} />
+              </AnimatePresence>
 
-              <SelectState set={setshowErrMsg} />
+
             </form>
             {showErrMsg ? (
               <div className="text-red-600  mt-2 capitalize">
@@ -274,7 +305,7 @@ function BlurberMultiPartForm() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -283,13 +314,23 @@ function BlurberMultiPartForm() {
     const [salary, setSalary] = useState("");
     const [employment, setEmployment] = useState("");
     const [education, setEducation] = useState("");
-    const [numofcontacts, setnumofcontacts] = useState();
+    const [numofcontacts, setnumofcontacts] = useState('');
     const [occupation, setoccupation] = useState("");
 
     const [showErrMsg, setshowErrMsg] = useState(false);
 
     return (
-      <div className="mt-12 md:mt-32">
+      <motion.div className="mt-12 md:mt-32"
+            initial={{ opacity: 0,   }}
+      animate={{ opacity: 1 ,
+        x:0,
+         transition: {
+      duration: 0.5,
+      type: "ease",
+      damping: 25,
+      stiffness: 500,
+    }, }}
+      exit={{ opacity: 0 ,x:window.innerWidth }}>
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -440,7 +481,7 @@ function BlurberMultiPartForm() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -455,7 +496,17 @@ function BlurberMultiPartForm() {
        
 
     return (
-      <div className="mt-12 md:mt-32">
+      <motion.div className="mt-12 md:mt-32"
+            initial={{ opacity: 0,   }}
+      animate={{ opacity: 1 ,
+        x:0,
+         transition: {
+      duration: 0.5,
+      type: "ease",
+      damping: 25,
+      stiffness: 500,
+    }, }}
+      exit={{ opacity: 0 ,x:window.innerWidth }}>
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -578,7 +629,7 @@ function BlurberMultiPartForm() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -590,7 +641,17 @@ function BlurberMultiPartForm() {
      const [showErrMsg, setshowErrMsg] = useState(false);
 
     return (
-      <div className="mt-12 md:mt-32">
+      <motion.div className="mt-12 md:mt-32"
+            initial={{ opacity: 0,   }}
+      animate={{ opacity: 1 ,
+        x:0,
+         transition: {
+      duration: 0.5,
+      type: "ease",
+      damping: 25,
+      stiffness: 500,
+    }, }}
+      exit={{ opacity: 0 ,x:window.innerWidth }}>
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -676,7 +737,7 @@ function BlurberMultiPartForm() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -700,7 +761,7 @@ function BlurberMultiPartForm() {
     }, [cPassword]);
 
     return (
-      <div className="mt-12 md:mt-32">
+      <motion.div className="mt-12 md:mt-32">
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -840,7 +901,7 @@ function BlurberMultiPartForm() {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -856,9 +917,12 @@ function BlurberMultiPartForm() {
     <SecurityDetails page={page} setPage={setpage} />,
   ];
   return (
-    <div>
-      <div>{componentsList[page]}</div>
-    </div>
+    <AnimatePresence>
+       <div>{componentsList[page]}</div>
+    </AnimatePresence>
+    
+     
+    
   );
 }
 

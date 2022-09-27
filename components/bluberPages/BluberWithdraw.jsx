@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { BsInfoLg } from "react-icons/bs";
 import { ConfirmModal, SeenModal, Spinner } from "../utils/utils";
+import {AnimatePresence} from 'framer-motion'
 
 function BluberWithdraw() {
   const [withdrawAmount, setWithdrawAmount] = useState();
@@ -86,20 +87,22 @@ function BluberWithdraw() {
         </button>
       </form>
 
-      <ConfirmModal
-        showModal={showConfirm}
-        setShowModal={setShowConfirm}
-        setshowSeen={setIsLoading}
-        title={"confirm transfer"}
-        body={"Are you sure you want to withdraw the amount entered?"}
-      />
+      <AnimatePresence initial={false} exitBeforeEnter={true}>
+        <ConfirmModal
+          showModal={showConfirm}
+          setShowModal={setShowConfirm}
+          setshowSeen={setIsLoading}
+          title={"confirm transfer"}
+          body={"Are you sure you want to withdraw the amount entered?"}
+        />
 
-      <SeenModal
-        showModal={showSeen}
-        setShowModal={setShowSeen}
-        title={"Sent"}
-        body={"Your funds has been sent to your bank account"}
-      />
+        <SeenModal
+          showModal={showSeen}
+          setShowModal={setShowSeen}
+          title={"Sent"}
+          body={"Your funds has been sent to your bank account"}
+        />
+      </AnimatePresence>
     </div>
   );
 }
