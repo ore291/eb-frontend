@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { BsInfoLg } from "react-icons/bs";
-import { ConfirmModal, SeenModal, Spinner } from "../utils/utils";
+import { ConfirmModal, SeenModal } from "../utils/modals";
+import { Spinner } from "../utils/utils";
+
 import {AnimatePresence} from 'framer-motion'
 
 function BluberWithdraw() {
-  const [withdrawAmount, setWithdrawAmount] = useState();
+  const [withdrawAmount, setWithdrawAmount] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [password, setPassword] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);

@@ -4,7 +4,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import ClientImpressions from '../../components/clientPages/ClientImpressions'
 
-const impressions: NextPage = () => { 
+const Impressions: NextPage = () => { 
     return (
 <div>
           <Head>
@@ -33,4 +33,4 @@ const impressions: NextPage = () => {
 
 
 
-export default impressions
+export default Impressions

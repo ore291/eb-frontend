@@ -4,7 +4,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import ClientUploads from '../../components/clientPages/ClientUploads'
 
-const uploads: NextPage = () => { 
+const Uploads: NextPage = () => { 
     return (
 <div>
           <Head>
@@ -33,4 +33,4 @@ const uploads: NextPage = () => {
 
 
 
-export default uploads
+export default Uploads

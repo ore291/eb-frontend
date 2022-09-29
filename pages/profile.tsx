@@ -5,7 +5,7 @@ import Header from '../components/Header'
 import Head from 'next/head'
 import BlurberProfile from '../components/bluberPages/BlurberProfile'
 
-const profile :NextPage = () => {
+const Profile :NextPage = () => {
   return (
       <div>
           <Head>
@@ -30,4 +30,4 @@ const profile :NextPage = () => {
   )
 }
 
-export default profile
+export default Profile

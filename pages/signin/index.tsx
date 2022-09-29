@@ -7,7 +7,7 @@ import Header from '../../components/Header'
 const SignIn: NextPage = () => {
   return (
     <div className='mx-auto'>
-       <Head>
+      <Head>
         <title>Easy Blurb</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -19,14 +19,14 @@ const SignIn: NextPage = () => {
         <main>
           <LoginForm />
         </main>
-        </div>
-      
+      </div>
+
     </div>
-    
-      
-    
-      
-    
+
+
+
+
+
   )
 }
 

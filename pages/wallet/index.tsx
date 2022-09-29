@@ -4,7 +4,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import BlurberWallet from '../../components/bluberPages/BlurberWallet'
 
-const wallet: NextPage = () => {
+const Wallet: NextPage = () => {
 
     return (
         <div>
@@ -28,4 +28,4 @@ const wallet: NextPage = () => {
   )
 }
 
-export default wallet
+export default Wallet

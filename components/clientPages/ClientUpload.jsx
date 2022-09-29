@@ -1,7 +1,7 @@
 import  { useState, useEffect } from "react";
 import states from "../utils/states";
 import { BsUpload } from "react-icons/bs";
-import {UploadModal} from '../utils/utils'
+import {UploadModal} from '../utils/modals'
 import { AnimatePresence } from "framer-motion";
 
 function ClientUpload() {

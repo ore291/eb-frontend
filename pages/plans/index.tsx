@@ -4,7 +4,7 @@ import Header from '../../components/Header'
 import Head from 'next/head'
 import ClientPlans from '../../components/clientPages/ClientPlans'
 
-const plans :NextPage = () => {
+const Plans :NextPage = () => {
   return (
       <div>
           <Head>
@@ -29,4 +29,4 @@ const plans :NextPage = () => {
   )
 }
 
-export default plans
+export default Plans

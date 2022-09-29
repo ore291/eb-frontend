@@ -4,7 +4,7 @@ import Header from '../../components/Header'
 import Head from 'next/head'
 import ClientUpload from '../../components/clientPages/ClientUpload'
 
-const upload :NextPage = () => {
+const Upload :NextPage = () => {
   return (
       <div>
           <Head>
@@ -29,4 +29,4 @@ const upload :NextPage = () => {
   )
 }
 
-export default upload
+export default Upload

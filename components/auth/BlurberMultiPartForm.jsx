@@ -6,66 +6,14 @@ import { motion,AnimatePresence  } from "framer-motion";
 
 function BlurberMultiPartForm() {
   // function to select nigeria state and lga
-  const [lga, setLga] = useState([]);
-  const [naijaState, setNaijaState] = useState("");
-  const [naijaLga, setNaijaLga] = useState("");
-  const SelectState = ({ set }) => {
-    const stateList = Object.keys(states).map((state, i) => ({
-      id: i,
-      name: state,
-    }));
-    const handleStateSelect = (e) => {
-      const stateSel = e.target.value;
-      const lgaSel = stateSel !== "" ? states[stateSel] : "";
-      setNaijaState(stateSel);
-      setLga(lgaSel);
-      setNaijaLga("");
-      console.log(naijaState);
-      set(false);
-    };
+  
+  // const SelectState = ({ set }) => {
+   
 
-    const handleLgaSelect = (e) => {
-      const lgaSel = e.target.value;
-      setNaijaLga(lgaSel);
-      set(false);
-    };
+  //   return (
 
-    return (
-      <motion.div layout onClick={(e)=>e.stopPropagation()}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}>
-        <select
-          onChange={(e) => {handleStateSelect(e)
-          e.preventDefault()}}
-          className="form-select py-3 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
-      ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-          value={naijaState}
-        >
-          <option value="selected"> {"Select State"}</option>
-          {stateList.map((state, key) => (
-            <option key={key} value={state.name}>
-              {state.name}
-            </option>
-          ))}
-        </select>
-        <select
-          name="Cities"
-          onChange={(e) => handleLgaSelect(e)}
-          className="form-select py-3 my-5 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
-      ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-          value={naijaLga}
-        >
-          <option value=""> {"Select LGA"}</option>
-          {lga.map((lga, key) => (
-            <option key={key} value={lga}>
-              {lga}
-            </option>
-          ))}
-        </select>
-      </motion.div>
-    );
-  };
+  //   );
+  // };
 
   const PersonalDetails = ({ page, setPage }) => {
     const [verifyPhone, setverifyPhone] = useState(null);
@@ -82,15 +30,15 @@ function BlurberMultiPartForm() {
       animate={{ opacity: 1 ,
         x:0,
          transition: {
-      duration: 0.5,
-      type: "ease",
+      duration: 0.9,
+      type: "ease-in-out",
       damping: 25,
       stiffness: 500,
     }, }}
       exit={{ opacity: 0 ,x:window.innerWidth }}
 >
-        <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500 ">
-          <div className="py-8 px-8 rounded-xl">
+        <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md  ">
+          <div className="py-8 px-8 rounded-xl">0
             <h1 className="font-medium text-2xl mt-3 text-start">
               {" "}
               Create Account
@@ -138,23 +86,27 @@ function BlurberMultiPartForm() {
                   value={phone}
                   onChange={(e) => {
                     setPhone(e.target.value);
-                    setverifyPhone(verifyPhoneNumber(e.target.value));
+                    
                     setshowErrMsg(false);
+                  }}
+                  onKeyUp={(e) => {
+                    setverifyPhone(verifyPhoneNumber(e.target.value));
+                    
                   }}
                   required
                   className="rounded-sm focus:bg-white px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
                   placeholder="Phone Number"
                 />
                 <span
-                  className={`text-red-600  mt-2 capitalize ${
+                  className={`text-red-600  mt- capitalize ${
                     verifyPhone === null || phone === ""
-                      ? "hidden py-4"
+                      ? "hidden mt-2"
                       : "flex p-0"
                   }`}
                 >
-                  {!verifyPhone ? "please input a valid phone number" : ""}
+                  {!verifyPhone && "please input a valid phone number" }
                 </span>
-                <div className="flex justify-end w-[101px]  ml-auto rounded-md  mt-4 text-xs text-gray-600 bg[#FCBF65]"></div>
+                
               </div>
 
               <div className="my-5 text-sm">
@@ -180,13 +132,11 @@ function BlurberMultiPartForm() {
               </div>
             </form>
 
-            {showErrMsg ? (
+            {showErrMsg && (
               <div className="text-red-600  mt-2 capitalize">
                 Please fill all fields before continuing
               </div>
-            ) : (
-              ""
-            )}
+            ) }
 
             <div className="flex items-center justify-between pt-5">
               <button
@@ -225,23 +175,51 @@ function BlurberMultiPartForm() {
   };
 
   const LocationDetails = ({ page, setPage }) => {
+    const [lga, setLga] = useState([]);
+    const [naijaState, setNaijaState] = useState("");
+    const [naijaLga, setNaijaLga] = useState("");
     const [city, setcity] = useState("");
     const [showErrMsg, setshowErrMsg] = useState(false);
+     const stateList = Object.keys(states).map((state, i) => ({
+       id: i,
+       name: state,
+     }));
+     const handleStateSelect = (e) => {
+      e.preventDefault()
+       const stateSel = e.target.value;
+       const lgaSel = stateSel !== "" ? states[stateSel] : "";
+       setNaijaState(stateSel);
+       setLga(lgaSel);
+       setNaijaLga("");
+       console.log(naijaState);
+     // set(false);
+     };
+
+     const handleLgaSelect = (e) => {
+      e.preventDefault()
+       const lgaSel = e.target.value;
+       setNaijaLga(lgaSel);
+      // set(false);
+     };
 
     return (
-      <motion.div className="mt-12 md:mt-32" layout     
-            initial={{ opacity: 0,   }}
-            o
-      animate={{ opacity: 1 ,
-        x:0,
-         transition: {
-      duration: 0.1,
-      type: "spring",
-      damping: 25,
-      stiffness: 500,
-    }, }}
-      exit={{ opacity: 0 ,x:window.innerWidth }}
->
+      <motion.div
+        className="mt-12 md:mt-32"
+        layout
+        initial={{ opacity: 0 }}
+        o
+        animate={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 0.9,
+            type: "ease-in",
+            damping: 25,
+            stiffness: 500,
+          },
+        }}
+        exit={{ opacity: 0, x: window.innerWidth }}
+      >
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -269,10 +247,47 @@ function BlurberMultiPartForm() {
                 />
               </div>
               <AnimatePresence initial={false} exitBeforeEnter={true}>
-                              <SelectState set={setshowErrMsg} />
+                <motion.div
+                  layout
+                  onClick={(e) => e.stopPropagation()}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <select
+                    onChange={(e) => {
+                      handleStateSelect(e);
+                      e.preventDefault();
+                    }}
+                    className="form-select py-3 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
+      ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    value={naijaState}
+                  >
+                    <option value="selected"> {"Select State"}</option>
+                    {stateList.map((state, key) => (
+                      <option key={key} value={state.name}>
+                        {state.name}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    name="Cities"
+                    onChange={(e) =>{ 
+                      e.preventDefault()
+                      handleLgaSelect(e)}}
+                    className="form-select py-3 my-5 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
+      ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    value={naijaLga}
+                  >
+                    <option value=""> {"Select LGA"}</option>
+                    {lga.map((lga, key) => (
+                      <option key={key} value={lga}>
+                        {lga}
+                      </option>
+                    ))}
+                  </select>
+                </motion.div>
               </AnimatePresence>
-
-
             </form>
             {showErrMsg ? (
               <div className="text-red-600  mt-2 capitalize">
@@ -490,9 +505,9 @@ function BlurberMultiPartForm() {
 
   const WhatsappDetails = ({ page, setPage }) => {
     const [socialClass, setSocialClass] = useState("");
-    const [numofviews, setNumofViews] = useState();
-    const [maleViews, setMaleViews] = useState();
-    const [femaleViews, setFemaleViews] = useState();
+    const [numofviews, setNumofViews] = useState('');
+    const [maleViews, setMaleViews] = useState('');
+    const [femaleViews, setFemaleViews] = useState('');
 
     const [showErrMsg, setshowErrMsg] = useState(false);
 
@@ -644,17 +659,21 @@ function BlurberMultiPartForm() {
      const [showErrMsg, setshowErrMsg] = useState(false);
 
     return (
-      <motion.div className="mt-12 md:mt-32"
-            initial={{ opacity: 0,   }}
-      animate={{ opacity: 1 ,
-        x:0,
-         transition: {
-      duration: 0.5,
-      type: "ease",
-      damping: 25,
-      stiffness: 500,
-    }, }}
-      exit={{ opacity: 0 ,x:window.innerWidth }}>
+      <motion.div
+        className="mt-12 md:mt-32"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 0.5,
+            type: "ease",
+            damping: 25,
+            stiffness: 500,
+          },
+        }}
+        exit={{ opacity: 0, x: window.innerWidth }}
+      >
         <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
           <div className="py-8 px-8 rounded-xl">
             <h1 className="font-medium text-2xl mt-3 text-start">
@@ -664,14 +683,31 @@ function BlurberMultiPartForm() {
             <h3 className="font-light text-sm text-start">
               Input your bank details
             </h3>
-            <ProgressBar width={80} />
+            <motion.div
+              initial={{ opacity: 0.9 }}
+              animate={{
+                opacity: 1,
+                x: 0,
+                transition: {
+                  duration: 1,
+                  type: "linear",
+                  damping: 25,
+                  stiffness: 500,
+                },
+              }}
+              exit={{ opacity: 0, x: window.innerWidth }}
+            
+              >
+              <ProgressBar width={80} />
+            </motion.div>
+
             <form action="">
               <div className="my-5 text-sm flex-col flex gap-3">
                 <input
                   type="text"
                   name="bank-name"
                   onChange={(e) => {
-                    setBankName(e.target.value)
+                    setBankName(e.target.value);
                     setshowErrMsg(false);
                   }}
                   autoFocus
@@ -685,7 +721,7 @@ function BlurberMultiPartForm() {
                   name="account-number"
                   autoFocus
                   onChange={(e) => {
-                    setAccountNumber(e.target.value)
+                    setAccountNumber(e.target.value);
                     setshowErrMsg(false);
                   }}
                   id="account-number"
@@ -693,13 +729,11 @@ function BlurberMultiPartForm() {
                   placeholder="Account Number"
                 />
 
-                
-
                 <input
                   type="text"
                   name="account-name"
                   onChange={(e) => {
-                    setAccountName(e.target.value)
+                    setAccountName(e.target.value);
                     setshowErrMsg(false);
                   }}
                   autoFocus

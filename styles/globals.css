@@ -13,11 +13,18 @@
    
   }
 
+  .no-scroll::-webkit-scrollbar{
+    display: none;
+  }
+
 
 
 
 @layer components{
     .hiw-cards{
         @apply flex md:flex-col items-center justify-start space-x-1 md:space-x-0 md:items-start md:justify-between md:h-[150px]
+    }
+    .cart-btn{
+      @apply bg-[#1A284B33] bg-opacity-30 rounded-full text-lg text-black p-1 text-center border-2 border-solid border-slate-300
     }  
 }

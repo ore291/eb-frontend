@@ -4,7 +4,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import BluberWithdraw from '../../components/bluberPages/BluberWithdraw'
 
-const withdraw: NextPage = () => {
+const Withdraw: NextPage = () => {
 
     return (
         <div>
@@ -27,4 +27,4 @@ const withdraw: NextPage = () => {
 
 
 
-export default withdraw
+export default Withdraw

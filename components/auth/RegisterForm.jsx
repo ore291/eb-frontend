@@ -62,7 +62,10 @@ const RegisterForm = ({setUser}) => {
           </form>
           <button
             onClick={() => {
-              setUser(userType);
+              if (checkIsFilled(2, userType, userEmail)) {
+                setUser(userType);
+              }
+
             }}
             className="block text-center mt-12 text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full"
           >
@@ -70,9 +73,9 @@ const RegisterForm = ({setUser}) => {
           </button>
           <div className="mt-12 text-xs flex flex-row justify-end gap-1 text-end font-light text-gray-400">
             {" "}
-            Don't have an account?{" "}
-            <Link href="/register">
-              <p className="text-black font-medium">Create One</p>
+            Already have an account?{" "}
+            <Link href="/signin">
+              <p className="text-black font-medium cursor-pointer">Login</p>
             </Link>{" "}
           </div>
         </div>

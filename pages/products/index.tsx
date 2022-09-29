@@ -1,10 +1,10 @@
-import ClientLayout from '../components/layouts/ClientLayout'
+import ClientLayout from '../../components/layouts/ClientLayout'
 import type { NextPage } from 'next'
-import Header from '../components/Header'
+import Header from '../../components/Header'
 import Head from 'next/head'
-import ClientHome from '../components/clientPages/ClientHome'
+import ClientHome from '../../components/clientPages/ClientHome'
 
-const products :NextPage = () => {
+const Products :NextPage = () => {
   return (
       <div>
           <Head>
@@ -29,4 +29,4 @@ const products :NextPage = () => {
   )
 }
 
-export default products
+export default Products

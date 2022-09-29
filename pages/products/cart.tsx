@@ -1,10 +1,14 @@
-import React from 'react'
-import ClientLayout from '../components/layouts/ClientLayout'
+import ClientLayout from '../../components/layouts/ClientLayout'
 import type { NextPage } from 'next'
+import Header from '../../components/Header'
 import Head from 'next/head'
-import ClientProfile from '../components/clientPages/ClientProfile'
+import ClientCart from '../../components/clientPages/ClientCart'
 
-const Account: NextPage = () => {
+import { useRouter } from 'next/router'
+
+function Cart() {
+
+  
   return (
     <div>
       <Head>
@@ -12,10 +16,9 @@ const Account: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
       <div className="flex flex-col min-h-screen overflow-auto text-center">
-        <ClientLayout Page={'profile'}>
-          <ClientProfile />
+        <ClientLayout Page={'cart'}>
+        <ClientCart />
 
 
         </ClientLayout>
@@ -24,13 +27,8 @@ const Account: NextPage = () => {
       </div>
 
 
-
     </div>
   )
-
-
 }
 
-
-
-export default Account
+export default Cart
