@@ -4,24 +4,22 @@ import { BiCheckboxChecked } from "react-icons/bi";
 import { BsCartFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../slices/cartSlice";
-import Link from 'next/link'
+import Link from "next/link";
+import { Tooltip } from "flowbite-react";
 
 function ClientHome() {
   const dispatch = useDispatch();
-    const cart = useSelector((state) => state.cart.cart);
-  console.log(cart);
-  
-   
+  const cart = useSelector((state) => state.cart.cart);
 
-    const getTotalQuantity = () => {
-      let total = 0;
-      cart?.map((item) => {
-        total += item.quantity;
-      });
-      return total;
-    };
-  console.log(getTotal());
-  const total = getTotalQuantity()
+  const getTotalQuantity = () => {
+    let total = 0;
+    cart?.map((item) => {
+      total += item.quantity;
+    });
+    return total;
+  };
+
+  const total = getTotalQuantity();
 
   const packs = [
     {
@@ -73,9 +71,18 @@ function ClientHome() {
           <div className="">
             {/* bell svg */}
             <div className="relative">
-              <span className="absolute text-sm text-white bg-red-500 rounded-full right-0 top-0 px-1 z-50 hover:scale-105 cursor-pointer ">
-                {total || 0}
-              </span>
+              <Link href="/products/cart">
+               
+                  <span
+                    className={`${
+                      total === 0 && "hidden"
+                    } absolute text-sm text-white bg-red-500 rounded-full right-0 top-0 px-1 z-50 hover:scale-105 cursor-pointer `}
+                  >
+                    {total || 0}
+                  </span>
+                
+              </Link>
+
               <Link href="/products/cart">
                 <BsCartFill className="mt-1" size={30} />
               </Link>

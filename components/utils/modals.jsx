@@ -3,8 +3,8 @@ import states from "./states";
 import { motion } from "framer-motion";
 import { BsUpload } from "react-icons/bs";
 import { useRouter } from "next/router";
-
-
+import { useDispatch } from "react-redux";
+import { removeItem } from "../../slices/cartSlice";
 
 export const ConfirmModal = ({
   showModal,
@@ -284,13 +284,12 @@ export const UploadModal = ({ showModal, setShowModal, title, body }) => {
   );
 };
 
-
 export const CartModal = ({
   showModal,
   setShowModal,
-  setshowSeen,
   title,
   body,
+  onConfirm,
 }) => {
   const dropIn = {
     hidden: {
@@ -298,8 +297,10 @@ export const CartModal = ({
       opacity: 0,
     },
     visible: {
-      y: "0",
       opacity: 1,
+      y: 0,
+      x: 0,
+      position: "fixed",
       transition: {
         duration: 0.2,
         type: "spring",
@@ -311,8 +312,8 @@ export const CartModal = ({
       y: "100vh",
       opacity: 0,
       transition: {
-        duration: 0.2,
-        type: "spring",
+        duration: 1.5,
+        type: "ease-out",
         damping: 25,
         stiffness: 500,
       },
@@ -323,18 +324,18 @@ export const CartModal = ({
       {showModal ? (
         <>
           <motion.div
-            className="justify-center items-center   flex overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none"
+            className="justify-center items-center mx-1  flex overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none"
             onClick={(e) => {
-              e.stopPropagation();
+              //   e.stopPropagation();
             }}
             variants={dropIn}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
-            <div className="relative w-auto my- mx-auto max-w-3xl">
+            <div className="relative w-auto  max-w-4xl min-w-full px-2">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full mx-auto bg-white outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full px-2  bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex  justify-betwee p-3 rounded-t">
                   <h3 className="text-xl font-semibold text-center mx-auto capitalize">
@@ -364,8 +365,8 @@ export const CartModal = ({
                     className="bg-baseOrng text-white  font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => {
+                      onConfirm();
                       setShowModal(false);
-                      setshowSeen(true);
                     }}
                   >
                     Confirm
@@ -375,13 +376,14 @@ export const CartModal = ({
             </div>
           </motion.div>
           <motion.div
-            className="opacity-25 fixed inset-0 z-40 bg-black"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.5 }}
-            exit={{ opacity: 0 }}
-            onClick={() => {
-              setShowModal(false);
+            className=" h-full fixed inset-0 z-40 bg-black"
+            onClick={(e) => {
+          
+              setShowModal((prev) => !prev);
             }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.25 }}
+            exit={{ opacity: 0 }}
           ></motion.div>
         </>
       ) : null}
