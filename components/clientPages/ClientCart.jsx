@@ -44,7 +44,7 @@ function ClientCart() {
   }
 
   return (
-    <div className="min-h-screen bg-bgGray overflow-auto no-scroll relative">
+    <div className="min-h-full bg-bgGray overflow-auto no-scroll relative">
       <div className="flex flex-col gap-y-6">
         {cart.length === 0 && (
           <div className="text-baseGray text-xl font-semibold text-center w-full mt-6 ">
@@ -152,7 +152,7 @@ function ClientCart() {
           {nairaFormatter(totalAmount)}
         </div>
       </div>
-      <div className="">
+      <div className=" mt-12">
         <button
           className={` ${
             cart === [] ? "bg-opacity-50 opacity-50" : "bg-baseOrn"
