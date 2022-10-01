@@ -122,7 +122,7 @@ function ClientCart() {
           </div>
         ))}
         {cart.length !== 0 && (
-          <div className="bg-baseOrng bg-clip-content w-fit  rounded-lg text-white">
+          <div className="bg-baseOrng bg-clip-content flex ml-auto w-fit  rounded-lg text-white">
             <Button
               color={"#fkffkk"}
               onClick={() => setShowClearCartModal(true)}

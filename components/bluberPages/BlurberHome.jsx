@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { JobsCard } from "../utils/utils";
 import { VscSettings } from "react-icons/vsc";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 function BlurberHome() {
-  
   const [showFilter, setShowFilter] = useState(false);
 
   const jobs = [
@@ -41,11 +42,15 @@ function BlurberHome() {
               Blurb<span className="text-[#C40505]">Jobs</span>
             </div>
 
-
             <div className="relative">
+              <Link href="/notifications">
+                <span className="absolute text-sm text-white bg-red-500 rounded-full right-0 top-0 px-1 z-50 hover:scale-105 cursor-pointer ">
+                  0
+                </span>
+              </Link>
               {/* bell svg */}
               <svg
-                className="w-6 h-6"
+                className="w-8 h-8"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -111,19 +116,33 @@ function BlurberHome() {
           </form>
         </main>
 
-        <div>
+        <div className="">
           {/* filter by div */}
           <React.Fragment>
             <div
-              className={`fixed top-0 left-0  h-full w-screen  blur-lg ${
+              className={`fixed top-0 left-0  h-full w-screen    blur-lg ${
                 showFilter ? "block" : "hidden"
               }`}
               onClick={() => setShowFilter(false)}
             ></div>
-            <div
-              className={`absolute right-0 top-30 md:hidden z-10 mt- w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
-                showFilter ? "block" : "hidden"
-              }`}
+            <motion.div
+              initial={{
+                y: "-100vh",
+              }}
+              animate={{
+                y: "0vh",
+                transition: {
+                  ease: "easeIn",
+                  duration: 0.5,
+                  type: "linear",
+                },
+              }}
+              // className={`absolute right-0 top-30 md:hidden z-10 mt- w-full  bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+              //
+              // }`}
+              className={`${
+                showFilter ? "absolut" : "hidden"
+              } absolut mx-auto justify-center  z-50 w-full origin-top-right rounded-md mt-2 md:h-0 transition-all ease-in-out duration-200 md:hidden shadow-lg bg-white`}
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="menu-button"
@@ -179,7 +198,7 @@ function BlurberHome() {
                   Declined Jobs
                 </a>
               </div>
-            </div>
+            </motion.div>
           </React.Fragment>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 mt-6">

@@ -326,14 +326,14 @@ export const CartModal = ({
           <motion.div
             className="justify-center items-center mx-1  flex overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none"
             onClick={(e) => {
-              //   e.stopPropagation();
+              e.stopPropagation();
             }}
             variants={dropIn}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
-            <div className="relative w-auto  max-w-4xl min-w-full px-2">
+            <div className="relative  md:mx-auto md:w-lg md:min-w-lg max-w-4xl w-full px-1">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full px-2  bg-white outline-none focus:outline-none">
                 {/*header*/}

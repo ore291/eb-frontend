@@ -84,7 +84,7 @@ function ClientHome() {
               </Link>
 
               <Link href="/products/cart">
-                <BsCartFill className="mt-1" size={30} />
+                <BsCartFill className="mt-1 cursor-pointer" size={30} />
               </Link>
             </div>
           </div>
