@@ -12,10 +12,9 @@ import {
   decrementQuantity,
   removeItem,
 } from "../../slices/cartSlice";
-
 import { motion } from "framer-motion";
 import { CartModal } from "../utils/modals";
-import { Button, Modal } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { AiOutlineClear } from "react-icons/ai";
 
 function ClientCart() {
@@ -44,7 +43,7 @@ function ClientCart() {
   }
 
   return (
-    <div className="min-h-full bg-bgGray overflow-auto no-scroll relative">
+    <div className="min-h-screen h bg-bgGray overflow-auto no-scroll relative">
       <div className="flex flex-col gap-y-6">
         {cart.length === 0 && (
           <div className="text-baseGray text-xl font-semibold text-center w-full mt-6 ">
@@ -144,7 +143,7 @@ function ClientCart() {
         />
         {/* clear cart */}
       </div>
-      <div className="bg-white rounded-lg flex items-center justify-between px-2 mt-8 mb-2.5 p-4">
+      <div className="bg-white rounded-lg flex items-center justify-between px-2 mt-8 mb- p-4">
         <div className="text-baseGray font-semibold text-xl capitalize">
           total
         </div>
@@ -152,7 +151,7 @@ function ClientCart() {
           {nairaFormatter(totalAmount)}
         </div>
       </div>
-      <div className=" mt-12">
+      <div className="absolute bottom-0 w-full">
         <button
           className={` ${
             cart === [] ? "bg-opacity-50 opacity-50" : "bg-baseOrn"

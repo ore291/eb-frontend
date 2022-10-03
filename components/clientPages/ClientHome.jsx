@@ -11,15 +11,18 @@ function ClientHome() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
 
-  const getTotalQuantity = () => {
-    let total = 0;
-    cart?.map((item) => {
-      total += item.quantity;
+    const getTotal = () => {
+    let totalQuantity = 0;
+    let totalPrice = 0;
+    cart.forEach((item) => {
+      totalQuantity += item.quantity;
+      totalPrice += item.price * item.quantity;
     });
-    return total;
+    return { totalPrice, totalQuantity };
   };
+  const total = getTotal().totalQuantity;
 
-  const total = getTotalQuantity();
+  //const total = getTotalQuantity();
 
   const packs = [
     {

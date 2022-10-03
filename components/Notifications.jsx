@@ -58,7 +58,7 @@ const SeeMore = ({ author, content }) => {
   return (
     <AnimatePresence>
       <motion.article
-        className="bg-white rounded-lg transition duration-300 ease-in-out  justify-center flex flex-col gap-y-4"
+        className="bg-white rounded-lg  transition duration-300 ease-in-out  justify-center flex flex-col gap-y-4"
         
         style={{ height: showMore ? "max-content" : "min-content" }}
         initial={{

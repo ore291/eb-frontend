@@ -51,8 +51,8 @@ function BlurberPayments() {
           <span className="text-lg capitalize">Today</span>
         </div>
         <div className=" md:max-h-min overflow-auto wallet md:s scroll-pb-0">
-          {payments.map((payment) => (
-            <div className="flex justify-between  mb-2">
+          {payments.map((payment,index) => (
+            <div className="flex justify-between  mb-2" key={index}>
               <div className="flex flex-col px-1">
                 <span className="text-[#EA4A2B] text-2xl font-medium text-start">
                   &#8358;{format(payment.amount)}

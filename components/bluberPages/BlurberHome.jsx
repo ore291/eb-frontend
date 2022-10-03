@@ -74,7 +74,7 @@ function BlurberHome() {
           >
             {/* search bar */}
             <input
-              className="border-2 border-gray-300 bg-white h-10 px-10 pr-16 w-full md:w-6/12 rounded-lg text-sm focus:outline-none"
+              className="border-2 border-gray-300 text-start bg-white h-10 px-10 pr-16 w-full md:w-6/12 rounded-lg text-sm focus:outline-none"
               type="search"
               name="search"
               placeholder="Search for jobs"

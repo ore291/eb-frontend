@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from "../Header";
-import { VscBriefcase } from 'react-icons/vsc'
+import { VscBriefcase } from "react-icons/vsc";
 import { RiWallet3Line } from "react-icons/ri";
 import { MdOutlinePayments } from 'react-icons/md'
 import {TiUserOutline} from 'react-icons/ti'
