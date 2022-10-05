@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { BsInfoLg } from "react-icons/bs";
 import { ConfirmModal, SeenModal } from "../utils/modals";
 import { Spinner } from "../utils/utils";
@@ -13,8 +12,8 @@ function BluberWithdraw() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [showSeen, setShowSeen] = useState(false);
 
-
-  if (isLoading) {
+useEffect(() => {
+ if (isLoading) {
     setTimeout(() => {
       setIsLoading(false);
 
@@ -22,6 +21,13 @@ function BluberWithdraw() {
     }, 5000);
     clearTimeout();
   }
+
+  return () => {
+    
+  }
+}, [isLoading])
+
+  
 
   
 

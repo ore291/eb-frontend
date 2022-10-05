@@ -2,10 +2,10 @@
 import DesktopLayout from '../../components/Desktop/DesktopLayout'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import BlurberDashboard from '../../components/Desktop/blurberPages/BlurberDashboard'
+import BlurberWallet from '../../components/Desktop/blurberPages/BlurberWallet'
 
 
-const Desktop :NextPage = () => {
+const Wallet :NextPage = () => {
   return (
     <div>
       <Head>
@@ -14,7 +14,7 @@ const Desktop :NextPage = () => {
       </Head>
       <DesktopLayout>
 
-          <BlurberDashboard />
+          <BlurberWallet />
 
        
       </DesktopLayout>
@@ -22,4 +22,4 @@ const Desktop :NextPage = () => {
   )
 }
 
-export default Desktop
+export default Wallet

@@ -18,6 +18,7 @@ module.exports = {
         baseRed: "#C40505",
         textGray: "#2A3A64E5",
         hoverGray: "#2d3359",
+        lightGreen: "#00BA88",
       },
       fontFamily: {
         ibm_plex_mono: ['"IBM Plex Mono"'],

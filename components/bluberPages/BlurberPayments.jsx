@@ -1,4 +1,5 @@
 import React from 'react'
+import { nairaFormatter } from '../utils/utils';
 
 function BlurberPayments() {
     const payments = [
@@ -82,7 +83,7 @@ function BlurberPayments() {
             <div className="flex justify-between  mb-2">
               <div className="flex flex-col px-1">
                 <span className="text-[#EA4A2B] text-2xl font-medium text-start">
-                  &#8358;{format(payment.amount)}
+                  {nairaFormatter(payment.amount)}
                 </span>
                 <span className="text-xs text-baseGray opacity-80">
                   {payment.date}

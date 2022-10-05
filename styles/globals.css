@@ -35,6 +35,6 @@
       @apply bg-white dark:bg-black dark:text-white row-start-2 col-span-1 h-full   border-r border-solid border-slate-100 dark:border-black shadow rounded-lg dark:rounded-none
     }
     .side-bar-item{
-      @apply flex justify-start py-2 px-4 items-center w-full gap-x-3 text-lg text-black        hover:dark:bg-hoverGray/40 hover:bg-slate-100/90 hover:border-r-2         hover:border-baseOrng hover:dark:border-white
+      @apply  flex justify-start py-2 px-4 items-center w-full gap-x-3 text-lg text-black  hover:dark:bg-hoverGray/40  hover:bg-slate-100/90  hover:border-baseOrng hover:dark:border-white
     }  
 }

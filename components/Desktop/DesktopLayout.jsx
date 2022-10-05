@@ -9,19 +9,25 @@ import { MdOutlinePayments } from "react-icons/md";
 
 function DesktopLayout({children}) {
   const [darkToggle, setDarkToggle] = useState(false);
-  const [sideBarOpen, setsideBarOpen] = useState(false);
+  const [sideBarOpen, setsideBarOpen] = useState(true);
 
   const routes = [
     {
       icon: <FaHome size={24} />,
       name: "dashboard",
-      link: "/dashboard",
+      link: "/desktop/dashboard",
+    },
+    {
+      icon: <VscBriefcase size={24} />,
+      name: "Jobs",
+      link: "/desktop/jobs",
     },
     {
       icon: <RiWallet3Line size={24} />,
       name: "wallet",
-      link: "/wallet",
+      link: "/desktop/wallet",
     },
+
     {
       icon: <MdOutlinePayments size={24} />,
       name: "payments",
@@ -37,7 +43,7 @@ function DesktopLayout({children}) {
   const showAnimation = {
     hidden: {
       width: 'auto',
-      opacity: 2,
+      opacity: 1,
       transition: {
         duration: 1,
         ease: "easeOut",
@@ -56,7 +62,9 @@ function DesktopLayout({children}) {
     const className = location.includes(link) ? "text-baseOrng" : "dark:text-white";
     return (
       <Link href={link}>
-        <div className={`side-bar-item ${className} dark:${className}`}>
+        <div
+          className={`side-bar-item hover:border-r  hover:pr-auto ${className} dark:${className}`}
+        >
           <div className="py-2">{icon}</div>
           <AnimatePresence>
             {sideBarOpen && (
@@ -65,7 +73,7 @@ function DesktopLayout({children}) {
                 initial="hidden"
                 // animate="show"
                 exit="hidden"
-                className={`text-2xl  capitalize font-bold  dark:${className}`}
+                className={`text-2xl m-0  capitalize font-bold  dark:${className}`}
               >
                 {name}
               </motion.div>
@@ -79,7 +87,7 @@ function DesktopLayout({children}) {
 
   return (
     <div
-      className={`grid grid-cols-5 no-scroll  gap-0 ${
+      className={`grid grid-cols-5 no-scroll  overflow-scroll gap-0 ${
         darkToggle && "dark"
       }`}
     >
@@ -101,7 +109,7 @@ function DesktopLayout({children}) {
           </button>
 
           <a href="/notifications">
-            <VscBell className="text-black dark:text-white cursor-progress" size={30} />
+            <VscBell className="text-black dark:text-white cursor-pointer" size={30} />
             <span className="absolute text-sm text-white bg-red-500 rounded-full right-0 top-0 px-1 z-50 hover:scale-105 cursor-pointer ">
               0
             </span>
@@ -114,7 +122,7 @@ function DesktopLayout({children}) {
         <AnimatePresence>
           <motion.aside
             // layout
-            animate={{ width: sideBarOpen ? "192px" : "48px" }}
+            animate={{ width: sideBarOpen ? "196px" : "48px" }}
             data-expanded={false}
             transition={{
               // type: "linear",
@@ -127,7 +135,7 @@ function DesktopLayout({children}) {
                 ease: "easeInOut",
               },
             }}
-            className={`desk-sidebar w-12 no-scroll col-start-1 `}
+            className={`desk-sidebar max-w-[188px] no-scroll col-start-1 `}
           >
             <motion.div
               onClick={() => {
@@ -138,11 +146,11 @@ function DesktopLayout({children}) {
               <FaBars
                 size={30}
                 className={`${
-                  sideBarOpen && "rotate-90"
+                  sideBarOpen && "rotate-180"
                 } transition-all duration-300`}
               />
             </motion.div>
-            <nav className="mt-12 flex flex-col gap-y-6">
+            <nav className="mt-12 flex flex-col w-full gap-y-6">
               {routes.map((route, index) => (
                 <div className="" key={index}>
                   <SideBarItem
@@ -157,7 +165,7 @@ function DesktopLayout({children}) {
           </motion.aside>
         </AnimatePresence>
 
-        <main className="w-full  bg-bgGray dark:bg-black/90 no-scroll">
+        <main className="w-full max-h-screen overflow-scroll bg-bgGray dark:bg-black/90 no-scroll">
           {children}
         </main>
       </div>
