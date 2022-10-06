@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
+
 export interface CounterState {
     cart: []
 }
@@ -14,7 +15,7 @@ export interface itemInCart {
 }
 
 const initialState: CounterState = {
-    cart: [],
+    cart:[],
 }
 
 export const counterSlice = createSlice({
@@ -22,9 +23,9 @@ export const counterSlice = createSlice({
     initialState,
     reducers: {
         addToCart: {
-            reducer(state: any, action: PayloadAction<any>) {
+            reducer(state:any, action: PayloadAction<Partial<itemInCart>>) {
                 const itemInCart: itemInCart = state.cart.find(
-                    (item: any) => item.id === action.payload.id
+                    (item: itemInCart) => item.id === action.payload.id
                 );
                 if (itemInCart) {
                     itemInCart.quantity++;
@@ -44,21 +45,21 @@ export const counterSlice = createSlice({
                 }
             }
         },
-        incrementQuantity: (state: any, action: PayloadAction<any>) => {
-            const item: itemInCart = state.cart.find((item: any) => item.id === action.payload);
+        incrementQuantity: (state: any, action: PayloadAction<number>) => {
+            const item: itemInCart = state.cart.find((item: itemInCart) => item.id === action.payload);
             item.quantity++;
         },
-        decrementQuantity: (state: any, action: PayloadAction<any>) => {
-            const item: itemInCart = state.cart.find((item: any) => item.id === action.payload);
+        decrementQuantity: (state: any, action: PayloadAction<number>) => {
+            const item: itemInCart = state.cart.find((item: itemInCart) => item.id === action.payload);
             if (item.quantity === 1) {
                 item.quantity = 1;
             } else {
                 item.quantity--;
             }
         },
-        removeItem: (state: any, action: PayloadAction<any>) => {
+        removeItem: (state: any, action: PayloadAction<number>) => {
             const removeItem = state.cart.filter(
-                (item: any) => item.id !== action.payload
+                (item: itemInCart) => item.id !== action.payload
             );
             state.cart = removeItem;
         },

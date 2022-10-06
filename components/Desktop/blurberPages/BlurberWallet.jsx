@@ -92,16 +92,15 @@ const [showWithdrawModal, setShowWithdrawModal] = useState(false);
               {twoWeeks}
             </span>
           </p>
-        
-            <button
-              onClick={() => {
-                setShowWithdrawModal(true);
-              }}
-              className="w-2/4 mx-auto mt-5 rounded-md bg-lightOrng text-baseOrng  py-2 hover:bg-orange-200 hover:shadow-md duration-75"
-            >
-              Withdraw
-            </button>
 
+          <button
+            onClick={() => {
+              setShowWithdrawModal(true);
+            }}
+            className="w-2/4 mx-auto mt-5 rounded-md bg-lightOrng text-baseOrng  py-2 hover:bg-orange-200 hover:shadow-md duration-75"
+          >
+            Withdraw
+          </button>
         </div>
       </section>
       <div className="flex justify-between mt-9 ">
@@ -117,7 +116,11 @@ const [showWithdrawModal, setShowWithdrawModal] = useState(false);
       <section className="max-h-72 no-scroll overflow-scroll">
         <PaymentsTable data={Payments} />
       </section>
-      <WithdrawModal showModal={showWithdrawModal} setShowModal={setShowWithdrawModal} />
+      <WithdrawModal
+        showModal={showWithdrawModal}
+        setShowModal={setShowWithdrawModal}
+        
+      />
     </div>
   );
 }
@@ -181,13 +184,12 @@ const WithdrawModal = ({showModal,setShowModal}) => {
 
   return (
     <React.Fragment>
-      <Modal
-        show={showModal}
-         onClose={()=>setShowModal(false)}
-      >
-        <Modal.Header>Withdraw from wallet</Modal.Header>
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        <Modal.Header className="dark:bg-slate-800">
+          Withdraw from wallet
+        </Modal.Header>
         <Modal.Body>
-          <div>
+          <div className="modal-body">
             Available wallet balance is:
             <span className="text-black font-bold">
               {nairaFormatter("400000")}

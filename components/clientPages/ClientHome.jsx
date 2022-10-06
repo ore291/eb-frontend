@@ -3,7 +3,7 @@ import { nairaFormatter } from "../utils/utils";
 import { BiCheckboxChecked } from "react-icons/bi";
 import { BsCartFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../slices/cartSlice";
+import { addToCart } from "../../store/slices/cartSlice";
 import Link from "next/link";
 import { Tooltip } from "flowbite-react";
 
@@ -65,7 +65,7 @@ function ClientHome() {
   return (
     <div className="min-h-screen bg-bgGray">
       {" "}
-      <main className="relativ">
+      <main className="">
         <div className="flex  items-center realtive p-2 justify-between font-semibold text-2xl ">
           <div className="">
             Blurb <span className="text-[#C40505]">Products</span>
@@ -75,19 +75,19 @@ function ClientHome() {
             {/* bell svg */}
             <div className="relative">
               <Link href="/products/cart">
-               
-                  <span
-                    className={`${
-                      total === 0 && "hidden"
-                    } absolute text-sm text-white bg-red-500 rounded-full right-0 top-0 px-1 z-50 hover:scale-105 cursor-pointer `}
-                  >
-                    {total || 0}
-                  </span>
-                
+                <span
+                  className={`${
+                    total === 0 && "hidden"
+                  } absolute text-sm text-white bg-red-500 rounded-full right-0 top-0 px-1 z-50 hover:scale-105 cursor-pointer `}
+                >
+                  {total || 0}
+                </span>
               </Link>
 
               <Link href="/products/cart">
-                <BsCartFill className="mt-1 cursor-pointer" size={30} />
+                <div>
+                  <BsCartFill className="mt-1 cursor-pointer" size={30} />
+                </div>
               </Link>
             </div>
           </div>

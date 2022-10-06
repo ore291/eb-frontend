@@ -1,51 +1,10 @@
-import Link from "next/link";
-import { nairaFormatter } from "../../utils/utils";
 import Image from "next/image";
 import { VscBriefcase } from "react-icons/vsc";
 import { AiOutlineCloudUpload, AiOutlineCarryOut } from "react-icons/ai";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { Table } from "flowbite-react";
 
-const ActiveJobs = ({ data }) => {
-  console.log(data);
-  return (
-    <Table hoverable={true}>
-      <Table.Head>
-        <Table.HeadCell>Id</Table.HeadCell>
-        <Table.HeadCell>Company name</Table.HeadCell>
-        <Table.HeadCell>Description</Table.HeadCell>
-        <Table.HeadCell>Time remaining</Table.HeadCell>
-        <Table.HeadCell>Price per blurb</Table.HeadCell>
-        <Table.HeadCell>
-          <span className="sr-only">Upload</span>
-        </Table.HeadCell>
-      </Table.Head>
-      <Table.Body className="divide-y">
-        {data?.map((value, index) => (
-          <Table.Row key={index} className="bg-white whitespace-nowrap first-letter:capitalize dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-              {value.id}
-            </Table.Cell>
-            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-              {value.client}
-            </Table.Cell>
-            <Table.Cell>{value.description.substring(0, 24)}...</Table.Cell>
-            <Table.Cell>{value.time}</Table.Cell>
-            <Table.Cell>{value.price}</Table.Cell>
-            <Table.Cell>
-              <a
-                href="/tables"
-                className="font-medium text-baseOrng hover:underline dark:text-baseOrng"
-              >
-                Upload
-              </a>
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table.Body>
-    </Table>
-  );
-};
+
 
 function BlurberDashboard() {
   const jobs = [
@@ -176,5 +135,48 @@ function BlurberDashboard() {
     </div>
   );
 }
+
+const ActiveJobs = ({ data }) => {
+  return (
+    <Table hoverable={true}>
+      <Table.Head>
+        <Table.HeadCell>Id</Table.HeadCell>
+        <Table.HeadCell>Company name</Table.HeadCell>
+        <Table.HeadCell>Description</Table.HeadCell>
+        <Table.HeadCell>Time remaining</Table.HeadCell>
+        <Table.HeadCell>Price per blurb</Table.HeadCell>
+        <Table.HeadCell>
+          <span className="sr-only">Upload</span>
+        </Table.HeadCell>
+      </Table.Head>
+      <Table.Body className="divide-y">
+        {data?.map((value, index) => (
+          <Table.Row
+            key={index}
+            className="bg-white whitespace-nowrap first-letter:capitalize dark:border-gray-700 dark:bg-gray-800"
+          >
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {value.id}
+            </Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {value.client}
+            </Table.Cell>
+            <Table.Cell>{value.description.substring(0, 24)}...</Table.Cell>
+            <Table.Cell>{value.time}</Table.Cell>
+            <Table.Cell>{value.price}</Table.Cell>
+            <Table.Cell>
+              <a
+                href="/tables"
+                className="font-medium text-baseOrng hover:underline dark:text-baseOrng"
+              >
+                Upload
+              </a>
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
+  );
+};
 
 export default BlurberDashboard;

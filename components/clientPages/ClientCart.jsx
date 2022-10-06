@@ -11,7 +11,7 @@ import {
   incrementQuantity,
   decrementQuantity,
   removeItem,
-} from "../../slices/cartSlice";
+} from "../../store/slices/cartSlice";
 import { motion } from "framer-motion";
 import { CartModal } from "../utils/modals";
 import { Button } from "flowbite-react";
@@ -151,7 +151,7 @@ function ClientCart() {
           {nairaFormatter(totalAmount)}
         </div>
       </div>
-      <div className="absolute bottom-0 w-full">
+      <div className="w-full">
         <button
           className={` ${
             cart === [] ? "bg-opacity-50 opacity-50" : "bg-baseOrn"

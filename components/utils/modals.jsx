@@ -1,10 +1,4 @@
-import { useState } from "react";
-import states from "./states";
 import { motion } from "framer-motion";
-import { BsUpload } from "react-icons/bs";
-import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { removeItem } from "../../slices/cartSlice";
 
 export const ConfirmModal = ({
   showModal,

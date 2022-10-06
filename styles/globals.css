@@ -36,5 +36,6 @@
     }
     .side-bar-item{
       @apply  flex justify-start py-2 px-4 items-center w-full gap-x-3 text-lg text-black  hover:dark:bg-hoverGray/40  hover:bg-slate-100/90  hover:border-baseOrng hover:dark:border-white
-    }  
+    }
+
 }
