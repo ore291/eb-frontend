@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { ProgressBar, checkIsFilled } from "../utils/utils";
 import { verifyPhoneNumber } from "nigerian-phone-number-validator";
 import { motion, AnimatePresence } from "framer-motion";
-import { useGetAllStatesQuery } from "../../store/services/statesSlice";
-
-
+import { useGetAllStatesQuery } from "../../store/services/statesApi";
+import { useRegisterBlurberMutation } from "../../store/services/registerApi";
+import { Spinner } from "flowbite-react";
+import { useRouter } from "next/router";
 
 const INITIAL_DATA = {
   firstName: "",
@@ -25,40 +26,76 @@ const INITIAL_DATA = {
   salary: 0,
   employment: 0,
   education: "",
-  numofcontacts: '',
+  numofcontacts: "",
   occupation: "",
 
   socialClass: "",
-  numOfViews: '',
-  maleViews: '',
-  femaleViews: '',
+  numOfViews: "",
+  maleViews: "",
+  femaleViews: "",
 
   bankName: "",
   accountNumber: "",
   accountName: "",
-
-  
 };
 
-function BlurberMultiPartForm({userEmail,userType}) {
+function BlurberMultiPartForm({ userEmail, userType }) {
   const [data, setData] = useState(INITIAL_DATA);
   const updateFields = (fields) => {
     setData((prev) => {
       return { ...prev, ...fields };
     });
   };
-
+const router= useRouter()
  
-  console.log(data)
-  useEffect(() => {
-    updateFields({email:userEmail})
+  const userDetails = {
+    email: data.email,
+    phone: data.phone,
+    user_type: Number(userType),
+    password: data.password,
+    no_of_contacts: Number(data.numofcontacts),
+    first_name: data.firstName ,
+    last_name: data.lastName ,
+    gender: data.gender,
+    age_bracket: data.ageBracket,
+    salary_range: data.salary,
+    employment_type: data.employment,
+    occupation: data.occupation,
+    education_level: data.education,
+    average_whatsapp_views: data.numOfViews || 2,
+    male_viewership: data.maleViews || 0,
+    female_viewership: data.femaleViews || 0,
+    social_class_viewership: data.socialClass || 2,
+    city: data.city,
+    lga_id: data.naijaLga,
+    state_id: data.naijaState,
+    bank_name: data.bankName,
+    account_number: data.accountNumber,
+    account_name: data.accountName,
+  };
   
-    return () => {
-      
+  const [registerBlurber, {isError,isLoading ,isSuccess}] = useRegisterBlurberMutation();
+   
+
+  const register = async(success) => {
+    await registerBlurber({...userDetails}).unwrap()
+      .then((data) => {console.log(data) })
+      .then((error) => {
+        console.log(error)
+      })
+    if(success){
+     return router.push('/signin')
+
     }
-  }, [userEmail])
-  
-  
+    
+  };
+
+  //console.log(data);
+  useEffect(() => {
+    updateFields({ email: userEmail });
+
+    return () => {};
+  }, [userEmail]);
 
   // Multi step form controller
 
@@ -99,6 +136,10 @@ function BlurberMultiPartForm({userEmail,userType}) {
       setPage={setpage}
       {...data}
       updateFields={updateFields}
+      register={register}
+      isLoading={isLoading}
+      isSuccess={isSuccess}
+      isError={isError}
     />,
   ];
   return <AnimatePresence>{componentsList[page]}</AnimatePresence>;
@@ -352,7 +393,10 @@ const LocationDetails = ({
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   value={naijaState}
                 >
-                  <option value="selected"> {"Select State"}</option>
+                  <option value="selected">
+                    {" "}
+                    {isLoading ? <Spinner /> : "Select State"}
+                  </option>
                   {statesList?.map((state, key) => (
                     <option key={key} value={state.id}>
                       {state.name}
@@ -880,7 +924,7 @@ const BankDetails = ({ page, setPage, updateFields, bankName,accountNumber,accou
    );
 };
  
-const SecurityDetails = ({ page, setPage,updateFields }) => {
+const SecurityDetails = ({ page, setPage,updateFields,register,isLoading,isSuccess,isError }) => {
   const [cPassword, setCPassword] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [password, setPassword] = useState("");
@@ -888,6 +932,22 @@ const SecurityDetails = ({ page, setPage,updateFields }) => {
 
   const [passwordType, setPasswordType] = useState(true);
   const [CpasswordType, setCPasswordType] = useState(true);
+  const router = useRouter()
+  const loading = isLoading
+  //  if(isSuccess){
+  //    router.push('/jobs')
+  //   }
+    
+
+  const buttonText=()=>{
+    var btnText = 'Finish'
+    if(isLoading){
+      btnText = `Processing ${<Spinner/>}`
+     
+    }
+   
+    return btnText
+  }
 
   useEffect(() => {
     if (isCPasswordDirty) {
@@ -1039,7 +1099,9 @@ const SecurityDetails = ({ page, setPage,updateFields }) => {
           ) : (
             <div></div>
           )}
-          <button className='bg-baseOrng block w-full rounded-md p-2 text-center text-white text-xl'>Finish</button>
+          <button disabled={password && cPassword && !showErrorMessage ? false : true} className='bg-baseOrng block w-full rounded-md p-2 text-center text-white text-xl'onClick={()=>{
+            register(isSuccess)
+          }}>{isLoading ? <Spinner/> : 'Finish'}</button>
         </div>
       </div>
     </motion.div>

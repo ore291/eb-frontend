@@ -12,7 +12,7 @@ export const statesApi :any = createApi({
   reducerPath: 'statesApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://easyblurb.onrender.com/api/' }),
   endpoints: (builder) => ({
-    getAllStates: builder.query<States,any>({
+    getAllStates: builder.query<States,void>({
       query: () => `fields/states`,
     }),
   }),
