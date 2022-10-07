@@ -63,7 +63,7 @@ function DesktopLayout({children}) {
     return (
       <Link href={link}>
         <div
-          className={`side-bar-item hover:border-r  hover:pr-auto ${className} dark:${className}`}
+          className={`side-bar-item hover:border-r cursor-pointer hover:pr-auto ${className} dark:${className}`}
         >
           <div className="py-2">{icon}</div>
           <AnimatePresence>
@@ -92,14 +92,14 @@ function DesktopLayout({children}) {
       }`}
     >
       <nav className="row-start-1 no-scroll col-span-5  border-b border-slate-200 shadow-sm h-12 rounded dark:rounded-sm dark:bg-black dark:border-black dark:text-white flex flex-row justify-between items-center">
-        <div
-          // onClick={() => {
-          //   setsideBarOpen((prev) => !prev);
-          // }}
-          className="font-semibold text-2xl px-4 py-2"
+        <Link href='/'>
+                  <div
+          className="font-semibold text-2xl cursor-pointer px-4 py-2"
         >
           Blurb<span className="text-[#C40505]">Jobs</span>
         </div>
+        </Link>
+
         <div className="relative mr-8 flex gap-6">
           <button
             className="h-full transition-all duration-500 flex justify-center items-center"
@@ -118,7 +118,7 @@ function DesktopLayout({children}) {
         </div>
       </nav>
 
-      <div className="flex w-scree h-screen col-span-5 no-scroll">
+      <div className="flex  h-screen col-span-5 no-scroll">
         <AnimatePresence>
           <motion.aside
             // layout
@@ -150,7 +150,7 @@ function DesktopLayout({children}) {
                 } transition-all duration-300`}
               />
             </motion.div>
-            <nav className="mt-12 flex flex-col w-full gap-y-6">
+            <nav className="mt-6 flex flex-col w-full gap-y-3">
               {routes.map((route, index) => (
                 <div className="" key={index}>
                   <SideBarItem

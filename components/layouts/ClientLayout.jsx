@@ -20,11 +20,7 @@ function ClientLayout({ children, Page }) {
           <div className="h-16 flex items-center  w-full ">
             {/* Logo Section */}
             <a className="h-6 w-6 mx-auto" href="">
-              {/* <img
-                className="h-6 w-6 mx-auto"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/512px-Svelte_Logo.svg.png"
-                a lt="svelte logo"
-              /> */}
+            
             </a>
           </div>
           <ul>
@@ -74,11 +70,7 @@ function ClientLayout({ children, Page }) {
             <ul className="flex items-center lg:hidden">
               {/* top bar left */}
               <li className="h-6 w-6">
-                {/* <img
-                  className="h-full w-full mx-auto"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/512px-Svelte_Logo.svg.png"
-                  alt="svelte logo"
-                /> */}
+
               </li>
             </ul>
             <ul className="flex items-center">

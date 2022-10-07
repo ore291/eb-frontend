@@ -1,5 +1,4 @@
 import {useState} from "react";
-import states from "./states";
 import {motion} from 'framer-motion'
 import { BsUpload } from "react-icons/bs";
 import { useRouter } from "next/router";
@@ -45,12 +44,29 @@ export const checkIsFilled = (num, a, b, c, d, e, f) => {
       e = true;
       f = true;
       break;
+    case 3:
+      a = a;
+      b = b;
+      c = c;
+      d = true;
+      e = true;
+      f = true;
+      break;
     case 4:
       a = a;
       b = b;
       c = c;
       d = d;
       e = true;
+      f = true;
+
+      break;
+    case 5:
+      a = a;
+      b = b;
+      c = c;
+      d = d;
+      e = e;
       f = true;
 
       break;
@@ -61,14 +77,6 @@ export const checkIsFilled = (num, a, b, c, d, e, f) => {
       d = d;
       e = e;
       f = f;
-      break;
-    case 3:
-      a = a;
-      b = b;
-      c = c;
-      d = true;
-      e = true;
-      f = true;
       break;
 
     default:
@@ -105,12 +113,16 @@ export const checkNumber = (str, length) => {
 export const JobsCard = ({ cover, description, client, status }) => {
   return (
     <div className="flex  items-center justify-center  md:px-4 w-full  md:my-0">
-      <div className="md:max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 md:hover:scale-105 hover:shadow-xl">
-        <img src={cover} alt="" className="object-contain max-h-[40%] " />
+      <div className="md:max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 md:hover:scale-101 dark:bg-black dark:text-white hover:shadow-xl">
+        <img
+          src={cover ? cover : "../../public/images/betway.png"}
+          alt=""
+          className="object-contain max-h-[40%] "
+        />
         <div className="p-4 text-start">
           <div className=" flex m-2 w-full relative">
             <div
-              className="w-[40px] h-[40px] mr-2  rounded-full border-[2px] border-solid border-black  bg-contain bg-no-repea bg-center"
+              className="w-[40px] h-[40px] mr-2   rounded-full border-[2px] border-solid border-black bg-no-repeat  bg-cover  bg-center"
               style={{ backgroundImage: `url(${cover})` }}
             ></div>
             <div className="capitalize font-bold text-xl">{client}</div>
@@ -122,10 +134,10 @@ export const JobsCard = ({ cover, description, client, status }) => {
           </div>
           {}
 
-          <p className="font-normal text-sm mb-5 text-baseGray opacity-60 text-justify ">
+          <p className="font-normal text-sm mb-5 text-baseGray dark:text-gray-100 opacity-60 text-justify ">
             {description}
           </p>
-          <button className="w-full rounded-md bg-lightOrng text-baseOrng  py-2 hover:bg-orange-200 hover:shadow-md duration-75">
+          <button className="w-full rounded-md bg-lightOrng dark:text-white dark:bg-baseOrng text-baseOrng  py-2 hover:bg-orange-200 hover:shadow-md duration-75">
             {status || "Accept Job"}
           </button>
         </div>

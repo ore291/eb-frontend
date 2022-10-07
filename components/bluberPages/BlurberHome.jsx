@@ -70,11 +70,11 @@ function BlurberHome() {
           <form
             action=""
             method="get"
-            className="pt-2 relative mx-auto text-gray-600 flex px- gap-1 md:justify-start  md:flex-auto"
+            className="pt-2 relative mx-auto text-gray-600 flex  gap-1 md:justify-start  md:flex-auto"
           >
             {/* search bar */}
             <input
-              className="border-2 border-gray-300 text-start bg-white h-10 px-10 pr-16 w-full md:w-6/12 rounded-lg text-sm focus:outline-none"
+              className="border-2 border-gray-300 text-start bg-white h-10 px-10 pr-16 w-full md:w-6/12 rounded-lg text-sm "
               type="search"
               name="search"
               placeholder="Search for jobs"

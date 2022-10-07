@@ -2,10 +2,10 @@
 import DesktopLayout from '../../components/Desktop/DesktopLayout'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import BlurberWallet from '../../components/Desktop/blurberPages/BlurberWallet'
+import BlurberJobs from '../../components/Desktop/blurberPages/BlurberJobs'
 
 
-const Wallet :NextPage = () => {
+const Jobs :NextPage = () => {
   return (
     <div>
       <Head>
@@ -13,10 +13,10 @@ const Wallet :NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DesktopLayout>
-          <BlurberWallet />
+          <BlurberJobs />
       </DesktopLayout>
     </div>
   )
 }
 
-export default Wallet
+export default Jobs

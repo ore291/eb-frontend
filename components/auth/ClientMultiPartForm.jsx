@@ -1,123 +1,9 @@
-import React ,{useState,useEffect} from "react";
+import {useState,useEffect} from "react";
 import { ProgressBar, checkIsFilled } from "../utils/utils";
 
 
 function ClientMultiPartForm() {
-  const CompanyDetails = ({ page, setPage }) => {
-    const [companyName, setcompanyName] = useState('')
-    const [companyRep, setcompanyRep] = useState('');
-    const [companyRepContact, setcompanyRepContact] = useState('');
-    const [companyEmail, setcompanyEmail] = useState('');
-    return (
-      <div className="mt-12 md:mt-32">
-        <div className="bg-white lg:w-4/12 md:6/12 w-full m-auto my-10 shadow-md">
-          <div className="py-8 px-8 rounded-xl">
-            <h1 className="font-medium text-2xl mt-3 text-start">
-              Create Account
-            </h1>
-            <h3 className="font-light text-sm text-start">
-              Client sign up form
-            </h3>
-            <ProgressBar width={50} />
-            <form action="" encType="multipart/form-data">
-              <div className="my-5 text-sm flex-col flex gap-3">
-                <input
-                  type="text"
-                  name="company-name"
-                  onChange={(e) => {
-                    setcompanyName(e.target.value);
-                  }}
-                  autoFocus
-                  id="company-name"
-                  className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
-                  placeholder="Company Name"
-                />
-                <input
-                  type="text"
-                  name="company-rep"
-                  onChange={(e) => {
-                    setcompanyRep(e.target.value);
-                  }}
-                  autoFocus
-                  id="company-rep"
-                  className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
-                  placeholder="Company Representative' Name"
-                />
-                <input
-                  type="text"
-                  name="company-rep-contact"
-                  onChange={(e) => {
-                    setcompanyRepContact(e.target.value);
-                  }}
-                  autoFocus
-                  id="company-rep-conatct"
-                  className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
-                  placeholder="Representative’s Contact"
-                />
-                <input
-                  type="email"
-                  name="company-rep-email"
-                  onChange={(e) => {
-                    setcompanyEmail(e.target.value);
-                  }}
-                  autoFocus
-                  id="company-rep-email"
-                  className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
-                  placeholder="Representative’s Email"
-                />
 
-                {/* upload compony logo ,the input is covered so i could style it like the design */}
-                <label
-                  htmlFor="logo"
-                  className=" text-center p- cursor-pointer bg-gray-100"
-                >
-                  <div className=" flex justify-start items-center p-0">
-                    <span className="bg-[#fcdb2400] md:px-auto flex justify-center capitalize items-center gap-2 px-2 py-2 rounded-lg text-lg w-full text-black  text-center md:p-auto whitespace-nowrap ">
-                      Upload company logo
-                      <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-                        />
-                      </svg>
-                    </span>
-                    {/* <p className="text-lg mx-auto bg-gray-100 md:w-8/12 hidden md:block w-0 py- whitespace-nowrap text-center">
-                      Company Logo
-                    </p> */}
-                  </div>
-                  <input
-                    className="form-control f"
-                    style={{ display: "none" }}
-                    type="file"
-                    accept="image/png, image/gif, image/jpeg ,image/webp"
-                    name="company-logo"
-                    required
-                    id="logo"
-                  />
-                </label>
-              </div>
-            </form>
-            <button
-              onClick={() => {
-                if (checkIsFilled(4, companyName,companyEmail,companyRep,companyRepContact)) setPage(page + 1);
-              }}
-              className="block text-center text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full"
-            >
-              Proceed
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-    };
     const SecurityDetails = ({ page, setPage }) => { 
          const [cPassword, setCPassword] = useState("");
          const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -319,5 +205,128 @@ function ClientMultiPartForm() {
     </div>
   );
 }
+  const CompanyDetails = ({ page, setPage }) => {
+    const [companyName, setcompanyName] = useState("");
+    const [companyRep, setcompanyRep] = useState("");
+    const [companyRepContact, setcompanyRepContact] = useState("");
+    const [companyEmail, setcompanyEmail] = useState("");
+    return (
+      <div className="mt-12 md:mt-32">
+        <div className="bg-white lg:w-4/12 md:6/12 w-full m-auto my-10 shadow-md">
+          <div className="py-8 px-8 rounded-xl">
+            <h1 className="font-medium text-2xl mt-3 text-start">
+              Create Account
+            </h1>
+            <h3 className="font-light text-sm text-start">
+              Client sign up form
+            </h3>
+            <ProgressBar width={50} />
+            <form action="" encType="multipart/form-data">
+              <div className="my-5 text-sm flex-col flex gap-3">
+                <input
+                  type="text"
+                  name="company-name"
+                  onChange={(e) => {
+                    setcompanyName(e.target.value);
+                  }}
+                  autoFocus
+                  id="company-name"
+                  className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
+                  placeholder="Company Name"
+                />
+                <input
+                  type="text"
+                  name="company-rep"
+                  onChange={(e) => {
+                    setcompanyRep(e.target.value);
+                  }}
+                  autoFocus
+                  id="company-rep"
+                  className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
+                  placeholder="Company Representative' Name"
+                />
+                <input
+                  type="text"
+                  name="company-rep-contact"
+                  onChange={(e) => {
+                    setcompanyRepContact(e.target.value);
+                  }}
+                  autoFocus
+                  id="company-rep-conatct"
+                  className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
+                  placeholder="Representative’s Contact"
+                />
+                <input
+                  type="email"
+                  name="company-rep-email"
+                  onChange={(e) => {
+                    setcompanyEmail(e.target.value);
+                  }}
+                  autoFocus
+                  id="company-rep-email"
+                  className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
+                  placeholder="Representative’s Email"
+                />
 
+                {/* upload compony logo ,the input is covered so i could style it like the design */}
+                <label
+                  htmlFor="logo"
+                  className=" text-center p- cursor-pointer bg-gray-100"
+                >
+                  <div className=" flex justify-start items-center p-0">
+                    <span className="bg-[#fcdb2400] md:px-auto flex justify-center capitalize items-center gap-2 px-2 py-2 rounded-lg text-lg w-full text-black  text-center md:p-auto whitespace-nowrap ">
+                      Upload company logo
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                        />
+                      </svg>
+                    </span>
+                    {/* <p className="text-lg mx-auto bg-gray-100 md:w-8/12 hidden md:block w-0 py- whitespace-nowrap text-center">
+                      Company Logo
+                    </p> */}
+                  </div>
+                  <input
+                    className="form-control f"
+                    style={{ display: "none" }}
+                    type="file"
+                    accept="image/png, image/gif, image/jpeg ,image/webp"
+                    name="company-logo"
+                    required
+                    id="logo"
+                  />
+                </label>
+              </div>
+            </form>
+            <button
+              onClick={() => {
+                if (
+                  checkIsFilled(
+                    4,
+                    companyName,
+                    companyEmail,
+                    companyRep,
+                    companyRepContact
+                  )
+                )
+                  setPage(page + 1);
+              }}
+              className="block text-center text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full"
+            >
+              Proceed
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
 export default ClientMultiPartForm;

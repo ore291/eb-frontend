@@ -1,41 +1,46 @@
 import React, { useState, useEffect } from "react";
-import states from "../utils/states";
 import { ProgressBar, checkIsFilled } from "../utils/utils";
 import { verifyPhoneNumber } from "nigerian-phone-number-validator";
 import { motion, AnimatePresence } from "framer-motion";
+import { useGetAllStatesQuery } from "../../store/services/statesSlice";
+
+
 
 const INITIAL_DATA = {
   firstName: "",
   lastName: "",
-  gender: "",
+  gender: 0,
   phone: "",
 
   email: "",
   password: "",
+  userType: 2,
 
   naijaState: "",
   naijaLga: "",
   city: "",
   lga: [],
 
-  ageBracket: "",
-  salary: "",
-  employment: "",
+  ageBracket: 0,
+  salary: 0,
+  employment: 0,
   education: "",
-  numofcontacts: "",
+  numofcontacts: '',
   occupation: "",
 
   socialClass: "",
-  numOfViews: "",
-  maleViews: "",
-  femaleViews: "",
+  numOfViews: '',
+  maleViews: '',
+  femaleViews: '',
 
   bankName: "",
   accountNumber: "",
   accountName: "",
+
+  
 };
 
-function BlurberMultiPartForm() {
+function BlurberMultiPartForm({userEmail,userType}) {
   const [data, setData] = useState(INITIAL_DATA);
   const updateFields = (fields) => {
     setData((prev) => {
@@ -44,170 +49,16 @@ function BlurberMultiPartForm() {
   };
 
  
-
-  const SecurityDetails = ({ page, setPage }) => {
-    const [cPassword, setCPassword] = useState("");
-    const [showErrorMessage, setShowErrorMessage] = useState(false);
-    const [password, setPassword] = useState("");
-    const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
-
-    const [passwordType, setPasswordType] = useState(true);
-    const [CpasswordType, setCPasswordType] = useState(true);
-
-    useEffect(() => {
-      if (isCPasswordDirty) {
-        if (password === cPassword) {
-          setShowErrorMessage(false);
-        } else {
-          setShowErrorMessage(true);
-        }
-      }
-    }, [cPassword]);
-
-    return (
-      <motion.div className="mt-12 md:mt-32">
-        <div className="bg-white lg:w-4/12 md:6/12 w-12/12 m-auto my-10 shadow-md transition ease-in-out delay-500">
-          <div className="py-8 px-8 rounded-xl">
-            <h1 className="font-medium text-2xl mt-3 text-start">
-              {" "}
-              Create Account
-            </h1>
-            <h3 className="font-light text-sm text-start">
-              You did it! you're done!
-            </h3>
-            <ProgressBar width={100} />
-            <form action="">
-              <div className="my-5 text-sm flex-col flex gap-3 relative">
-                <input
-                  type={passwordType ? "password" : "text"}
-                  name="password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                  value={password}
-                  autoFocus
-                  id="password"
-                  className="rounded-lg px-auto focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
-                  placeholder="Password"
-                />
-                <input
-                  type={CpasswordType ? "password" : "text"}
-                  name="Cpassword"
-                  onChange={(e) => {
-                    setCPassword(e.target.value);
-                    setIsCPasswordDirty(true);
-                  }}
-                  value={cPassword}
-                  autoFocus
-                  id="Cpassword"
-                  className="rounded-lg px-auto focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
-                  placeholder="Confirm Password"
-                />
-                {/*toggle password */}
-                <div
-                  className="absolute right-4 top-6"
-                  onClick={() => {
-                    setPasswordType((prev) => !prev);
-                  }}
-                >
-                  {passwordType ? (
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
-                      />
-                    </svg>
-                  )}
-                </div>
-                {/*toggle confirm password */}
-                <div
-                  className="absolute right-4 top-24"
-                  onClick={() => {
-                    setCPasswordType((prev) => !prev);
-                  }}
-                >
-                  {CpasswordType ? (
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
-                      />
-                    </svg>
-                  )}
-                </div>
-              </div>
-            </form>
-            {showErrorMessage && isCPasswordDirty ? (
-              <div className="text-red-700 font-bold transition delay-100 ease-in-out">
-                {" "}
-                Passwords do not match{" "}
-              </div>
-            ) : (
-              <div></div>
-            )}
-          </div>
-        </div>
-      </motion.div>
-    );
-  };
+  console.log(data)
+  useEffect(() => {
+    updateFields({email:userEmail})
+  
+    return () => {
+      
+    }
+  }, [userEmail])
+  
+  
 
   // Multi step form controller
 
@@ -263,17 +114,13 @@ const PersonalDetails = ({
   phone,
 }) => {
   const [verifyPhone, setverifyPhone] = useState(null);
-  // const [gender, setGender] = useState("");
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [phone, setPhone] = useState("");
 
   const [showErrMsg, setshowErrMsg] = useState(false);
 
   return (
     <motion.div
       className="mt-12 md:mt-32"
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 1 }}
       animate={{
         opacity: 1,
         x: 0,
@@ -368,7 +215,7 @@ const PersonalDetails = ({
                 <div className="mb-3 md:w-full">
                   <select
                     onChange={(e) => {
-                      updateFields({ gender: e.target.value });
+                      updateFields({ gender: Number(e.target.value) });
                       setshowErrMsg(false);
                     }}
                     value={gender}
@@ -378,8 +225,9 @@ const PersonalDetails = ({
                     <option value="selected" className="text-slate-400">
                       Gender
                     </option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value={1}>Male</option>
+                    <option value={2}>Female</option>
+                     <option value={3}>Other</option>
                   </select>
                 </div>
               </div>
@@ -388,19 +236,12 @@ const PersonalDetails = ({
 
           {showErrMsg && (
             <div className="text-red-600  mt-2 capitalize">
-              Please fill all fields before continuing
+              Please fill all Required before continuing
             </div>
           )}
 
-          <div className="flex items-center justify-between pt-5">
-            <button
-              onClick={() => {
-                setPage(page);
-              }}
-              className="md:w-4/12 rounded-md text-center text-white bg-[#000] p-3 duration-300  hover:bg-[#241c1c] "
-            >
-              Previous
-            </button>
+          <div className="flex items-center justify-end pt-5">
+           
             <button
               onClick={() => {
                 if (checkIsFilled(4, firstName, gender, phone, lastName)) {
@@ -416,11 +257,6 @@ const PersonalDetails = ({
           </div>
 
           <div className="mt-12 text-xs flex flex-row justify-end gap-1 text-end font-light text-gray-400">
-            {/* {" "}
-                Don't have an account?{" "}
-                <Link href="/register">
-                  <p className="text-black font-medium">Create One</p>
-                </Link>{" "} */}
           </div>
         </div>
       </div>
@@ -438,28 +274,28 @@ const LocationDetails = ({
   city,
 }) => {
   const [showErrMsg, setshowErrMsg] = useState(false);
-  const stateList = Object.keys(states).map((state, i) => ({
-    id: i,
-    name: state,
-  }));
+  const { data, isLoading } = useGetAllStatesQuery()
+  const statesList = data
   const handleStateSelect = (e) => {
     e.preventDefault();
-    const stateSel = e.target.value;
-    const lgaSel = stateSel !== "" ? states[stateSel] : "";
-    updateFields({ lga: lgaSel });
-    updateFields({ naijaState: e.target.value });
+    const stateSel = Number(e.target.value);
+    const lgaSel = statesList.find((state)=>{
+      return state.id === stateSel
+    })
+   updateFields({ lga: lgaSel.lgas });
+    updateFields({ naijaState: Number(e.target.value) });
   };
 
   const handleLgaSelect = (e) => {
     e.preventDefault();
-    updateFields({ naijaLga: e.target.value });
+    updateFields({ naijaLga: Number(e.target.value) });
   };
 
   return (
     <motion.div
       className="mt-12 md:mt-32"
       layout
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 1 }}
       animate={{
         opacity: 1,
         x: 0,
@@ -499,11 +335,11 @@ const LocationDetails = ({
                 placeholder="City"
               />
             </div>
-            <AnimatePresence initial={false} exitBeforeEnter={true}>
+            <AnimatePresence>
               <motion.div
                 layout
                 onClick={(e) => e.stopPropagation()}
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 1 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
@@ -517,8 +353,8 @@ const LocationDetails = ({
                   value={naijaState}
                 >
                   <option value="selected"> {"Select State"}</option>
-                  {stateList.map((state, key) => (
-                    <option key={key} value={state.name}>
+                  {statesList?.map((state, key) => (
+                    <option key={key} value={state.id}>
                       {state.name}
                     </option>
                   ))}
@@ -529,14 +365,15 @@ const LocationDetails = ({
                     e.preventDefault();
                     handleLgaSelect(e);
                   }}
+                  disabled={lga.length == 0 ? true : false}
                   className="form-select py-3 my-5 appearance-none block w-full bg-gray-100  text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   value={naijaLga}
                 >
                   <option value="selected"> {"Select LGA"}</option>
                   {lga.map((lga, key) => (
-                    <option key={key} value={lga}>
-                      {lga}
+                    <option key={key} value={lga.id}>
+                      {lga.name}
                     </option>
                   ))}
                 </select>
@@ -545,7 +382,7 @@ const LocationDetails = ({
           </form>
           {showErrMsg ? (
             <div className="text-red-600  mt-2 capitalize">
-              Please fill all fields before continuing
+              Please fill all Required before continuing
             </div>
           ) : (
             ""
@@ -594,7 +431,7 @@ const OccupationDetails = ({
   return (
     <motion.div
       className="mt-12 md:mt-32"
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 1 }}
       animate={{
         opacity: 1,
         x: 0,
@@ -630,12 +467,12 @@ const OccupationDetails = ({
                 autoFocus
                 id="n-c"
                 className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 focus:bg-white w-full"
-                placeholder="Number of Contacts"
+                placeholder="Number of Contacts (optional) "
               />
 
               <select
                 onChange={(e) => {
-                  updateFields({ ageBracket: e.target.value });
+                  updateFields({ ageBracket: Number(e.target.value) });
                   setshowErrMsg(false);
                 }}
                 value={ageBracket}
@@ -645,16 +482,16 @@ const OccupationDetails = ({
                 <option value="selected" className="text-slate-400">
                   Age bracket
                 </option>
-                <option value="0-18">0-18</option>
-                <option value="18-25">18-25</option>
-                <option value="26-35"> 26-35 </option>
-                <option value="36-50"> 36-50</option>
-                <option value="50+"> 50+ </option>
+                <option value={1}>0-18</option>
+                <option value={2}>18-50</option>
+                <option value={3}> 50+ </option>
+                {/* <option value="36-50"> 36-50</option>
+                <option value="50+"> 50+ </option> */}
               </select>
 
               <select
                 onChange={(e) => {
-                  updateFields({ salary: e.target.value });
+                  updateFields({ salary: Number(e.target.value) });
                   setshowErrMsg(false);
                 }}
                 value={salary}
@@ -664,22 +501,18 @@ const OccupationDetails = ({
                 <option value="selected" className="text-slate-400">
                   Salary Range
                 </option>
-                <option value="0-49"> &#8358;0 - &#8358;49,999</option>
-                <option value="50-199"> &#8358;50,000 - &#8358;199,999</option>
-                <option value="200-499">
-                  {" "}
-                  &#8358;200,000 - &#8358;499,999
+                <option value={1}> &#8358;0 - &#8358;250,000</option>
+                <option value={2}> &#8358;250,000 - &#8358;500,000</option>
+                <option value={3}>
+                 
+                  &#8358;500,000 - &#8358;1,000,000+
                 </option>
-                <option value="500-999">
-                  {" "}
-                  &#8358;500,000 - &#8358;999,999
-                </option>
-                <option value="1000"> &#8358;1,000,000+</option>
+                
               </select>
 
               <select
                 onChange={(e) => {
-                  updateFields({ employment: e.target.value });
+                  updateFields({ employment: Number(e.target.value) });
                   setshowErrMsg(false);
                 }}
                 value={employment}
@@ -689,9 +522,9 @@ const OccupationDetails = ({
                 <option value="selected" className="text-slate-400">
                   Employment Type
                 </option>
-                <option value="1"> None</option>
-                <option value="2"> Employed</option>
-                <option value="3"> Self-Employed</option>
+                <option value={1}> None</option>
+                <option value={2}> Employed</option>
+                <option value={3}> Self-Employed</option>
               </select>
               <input
                 type="text"
@@ -708,7 +541,7 @@ const OccupationDetails = ({
               />
               <select
                 onChange={(e) => {
-                  updateFields({ education: e.target.value });
+                  updateFields({ education: Number(e.target.value) });
                   setshowErrMsg(false);
                 }}
                 value={education}
@@ -727,7 +560,7 @@ const OccupationDetails = ({
           </form>
           {showErrMsg ? (
             <div className="text-red-600  mt-2 capitalize">
-              Please fill all fields before continuing
+              Please fill all Required before continuing
             </div>
           ) : (
             ""
@@ -745,13 +578,13 @@ const OccupationDetails = ({
               onClick={() => {
                 if (
                   checkIsFilled(
-                    6,
+                    5,
                     occupation,
                     education,
                     employment,
                     salary,
                     ageBracket,
-                    numofcontacts
+
                   )
                 ) {
                   setPage(page + 1);
@@ -786,7 +619,7 @@ const WhatsappDetails = ({
   return (
     <motion.div
       className="mt-12 md:mt-32"
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 1 }}
       animate={{
         opacity: 1,
         x: 0,
@@ -820,12 +653,12 @@ const WhatsappDetails = ({
                   autoFocus
                   id="whatsapp"
                   onChange={(e) => {
-                    updateFields({ numOfViews: e.target.value });
+                    updateFields({ numOfViews: Number(e.target.value) });
                     setshowErrMsg(false);
                   }}
                   value={numOfViews}
                   className="rounded-sm px-4 focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
-                  placeholder="Average Whatsapp Views"
+                  placeholder="Average Whatsapp Views (optional)"
                 />
               </div>
               <div className="my-5 text-sm ">
@@ -840,27 +673,27 @@ const WhatsappDetails = ({
                     type="text"
                     name="whatsapp-male"
                     onChange={(e) => {
-                      updateFields({ maleViews: e.target.value });
+                      updateFields({ maleViews: Number(e.target.value) });
                       setshowErrMsg(false);
                     }}
                     value={maleViews}
                    
                     id="whatsapp-male"
                     className="rounded-lg px-auto focus:bg-white py-3 text-xs md:text-sm mt-3 outline-black bg-gray-100 w-3/4"
-                    placeholder="Number of male viewers"
+                    placeholder="Number of male viewers (optional)"
                   />
                   <input
                     type="text"
                     name="whatsapp-female"
                     onChange={(e) => {
-                      updateFields({ femaleViews: e.target.value });
+                      updateFields({ femaleViews: Number(e.target.value) });
                       setshowErrMsg(false);
                     }}
                     value={femaleViews}
                   
                     id="whatsapp-female"
                     className="rounded-lg px-aut focus:bg-white py-3 text-xs md:text-sm mt-3 outline-black bg-gray-100 w-3/4"
-                    placeholder=" Number of female viewers
+                    placeholder=" Number of female viewers (optional)
 "
                   />
                 </div>
@@ -875,17 +708,17 @@ const WhatsappDetails = ({
       ease-in-out text-slate-500 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               >
                 <option value="selected" className="text-slate-400">
-                  Social class of viewers
+                  Social class of viewers (optional)
                 </option>
-                <option value="1">Poor</option>
-                <option value="2">Middle Class</option>
-                <option value="3">Rich</option>
+                <option value={1}>Poor</option>
+                <option value={2}>Middle Class</option>
+                <option value={3}>Rich</option>
               </select>
             </div>
           </form>
           {showErrMsg ? (
             <div className="text-red-600  mt-2 capitalize">
-              Please fill all fields before continuing
+              Please fill all Required before continuing
             </div>
           ) : (
             ""
@@ -902,13 +735,9 @@ const WhatsappDetails = ({
             <button
               onClick={() => {
                 if (
-                  checkIsFilled(
-                    4,
-                    numOfViews,
-                    maleViews,
-                    femaleViews,
-                    socialClass
-                  )
+                  
+                    true
+                  
                 ) {
                   setPage(page + 1);
                 } else {
@@ -927,16 +756,14 @@ const WhatsappDetails = ({
 };
 
 const BankDetails = ({ page, setPage, updateFields, bankName,accountNumber,accountName }) => {
-  //  const [bankName, setBankName] = useState("");
-  //  const [accountNumber, setAccountNumber] = useState("");
-  //  const [accountName, setAccountName] = useState("");
+ 
 
    const [showErrMsg, setshowErrMsg] = useState(false);
 
    return (
      <motion.div
        className="mt-12 md:mt-32"
-       initial={{ opacity: 0 }}
+       initial={{ opacity: 1 }}
        animate={{
          opacity: 1,
          x: 0,
@@ -959,7 +786,7 @@ const BankDetails = ({ page, setPage, updateFields, bankName,accountNumber,accou
              Input your bank details
            </h3>
            <motion.div
-             initial={{ opacity: 0.9 }}
+             initial={{ opacity: 1.9 }}
              animate={{
                opacity: 1,
                x: 0,
@@ -1020,7 +847,7 @@ const BankDetails = ({ page, setPage, updateFields, bankName,accountNumber,accou
            </form>
            {showErrMsg ? (
              <div className="text-red-600  mt-2 capitalize">
-               Please fill all fields before continuing
+               Please fill all Required before continuing
              </div>
            ) : (
              ""
@@ -1051,6 +878,172 @@ const BankDetails = ({ page, setPage, updateFields, bankName,accountNumber,accou
        </div>
      </motion.div>
    );
- };
+};
+ 
+const SecurityDetails = ({ page, setPage,updateFields }) => {
+  const [cPassword, setCPassword] = useState("");
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [password, setPassword] = useState("");
+  const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
+
+  const [passwordType, setPasswordType] = useState(true);
+  const [CpasswordType, setCPasswordType] = useState(true);
+
+  useEffect(() => {
+    if (isCPasswordDirty) {
+      if (password === cPassword) {
+        setShowErrorMessage(false);
+      } else {
+        setShowErrorMessage(true);
+      }
+    }
+  }, [cPassword]);
+
+  return (
+    <motion.div className="mt-12 md:mt-32">
+      <div className="bg-white lg:w-4/12 md:6/12 w-full m-auto my-10 shadow-md transition ease-in-out delay-500">
+        <div className="py-8 px-8 rounded-xl">
+          <h1 className="font-medium text-2xl mt-3 text-start">
+            {" "}
+            Create Account
+          </h1>
+          <h3 className="font-light text-sm text-start">
+            You did it! you're done!
+          </h3>
+          <ProgressBar width={100} />
+          <form action="">
+            <div className="my-5 text-sm flex-col flex gap-3 relative">
+              <input
+                type={passwordType ? "password" : "text"}
+                name="password"
+                onChange={(e) => {
+                  updateFields({ password: e.target.value });
+                  setPassword(e.target.value);
+                }}
+                value={password}
+                autoFocus
+                id="password"
+                className="rounded-lg px-auto focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
+                placeholder="Password"
+              />
+              <input
+                type={CpasswordType ? "password" : "text"}
+                name="Cpassword"
+                onChange={(e) => {
+                  setCPassword(e.target.value);
+                  setIsCPasswordDirty(true);
+                }}
+                value={cPassword}
+                autoFocus
+                id="Cpassword"
+                className="rounded-lg px-auto focus:bg-white py-3 mt-3 outline-black bg-gray-100 w-full"
+                placeholder="Confirm Password"
+              />
+              {/*toggle password */}
+              <div
+                className="absolute right-4 top-6"
+                onClick={() => {
+                  setPasswordType((prev) => !prev);
+                }}
+              >
+                {passwordType ? (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                    />
+                  </svg>
+                )}
+              </div>
+              {/*toggle confirm password */}
+              <div
+                className="absolute right-4 top-24"
+                onClick={() => {
+                  setCPasswordType((prev) => !prev);
+                }}
+              >
+                {CpasswordType ? (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                    />
+                  </svg>
+                )}
+              </div>
+            </div>
+          </form>
+          {showErrorMessage && isCPasswordDirty && cPassword ? (
+            <div className="text-red-700 font-bold transition delay-100 ease-in-out">
+              {" "}
+              Passwords do not match{" "}
+            </div>
+          ) : (
+            <div></div>
+          )}
+          <button className='bg-baseOrng block w-full rounded-md p-2 text-center text-white text-xl'>Finish</button>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 export default BlurberMultiPartForm;

@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { ProgressBar, checkIsFilled } from "../utils/utils";
 
-const RegisterForm = ({setUser}) => {
+const RegisterForm = ({setUser ,setEmail}) => {
   const [userType, setUserType] = useState("");
   const [userEmail, setUserEmail] = useState('')
 
@@ -64,6 +64,7 @@ const RegisterForm = ({setUser}) => {
             onClick={() => {
               if (checkIsFilled(2, userType, userEmail)) {
                 setUser(userType);
+                setEmail(userEmail);
               }
 
             }}

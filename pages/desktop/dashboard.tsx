@@ -5,7 +5,7 @@ import Head from 'next/head'
 import BlurberDashboard from '../../components/Desktop/blurberPages/BlurberDashboard'
 
 
-const Desktop :NextPage = () => {
+const Dashboard :NextPage = () => {
   return (
     <div>
       <Head>
@@ -13,13 +13,10 @@ const Desktop :NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DesktopLayout>
-
           <BlurberDashboard />
-
-       
       </DesktopLayout>
     </div>
   )
 }
 
-export default Desktop
+export default Dashboard
