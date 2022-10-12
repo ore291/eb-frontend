@@ -9,8 +9,8 @@ import { useState, Dispatch, SetStateAction  } from 'react'
 
 const SignUp: NextPage = () => {
   const [user, setUser] = useState('')
-  console.log(user);
-
+  const [email, setEmail] = useState('')
+  
   return (
     <div className='mx-auto'>
        <Head>
@@ -24,11 +24,11 @@ const SignUp: NextPage = () => {
 
         <main>
           {user == '2' || user == '3' ?(<div></div>):(
-          <RegisterForm setUser={setUser} />
+          <RegisterForm setUser={setUser} setEmail={setEmail} />
           )}
          
           
-          {user == '2' && (<BlurberMultiPartForm />)}
+          {user == '2' && (<BlurberMultiPartForm userType={user} userEmail={email} />)}
           {user == '3' && (<ClientMultiPartForm/>)}
           
 

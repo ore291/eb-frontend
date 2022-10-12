@@ -1,11 +1,12 @@
 import React from 'react'
-import Layout from '../components/Layout'
+import Layout from '../components/layouts/BlurberLayout'
+import type { NextPage } from 'next'
 import Header from '../components/Header'
 import Head from 'next/head'
 import BlurberHome from '../components/bluberPages/BlurberHome'
 
 
-export default function Jobs() {
+const Jobs:NextPage =()=> {
   return (
     <div>
         <Head>
@@ -14,7 +15,7 @@ export default function Jobs() {
       </Head>
       {/* <Header /> */}
 
-          <Layout >
+          <Layout Page={''}>
               <div>
                  <BlurberHome />
               </div>
@@ -23,3 +24,4 @@ export default function Jobs() {
     </div>
   )
 }
+export default Jobs

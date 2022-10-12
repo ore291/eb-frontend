@@ -2,9 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+.wallet::-webkit-scrollbar  {
+    display: none;
+   
+  }
+
+  .uploads::-webkit-scrollbar  {
+    display: none;
+   
+  }
+
+  .no-scroll::-webkit-scrollbar{
+    display: none;
+  }
+
+  
+
+
 
 @layer components{
     .hiw-cards{
         @apply flex md:flex-col items-center justify-start space-x-1 md:space-x-0 md:items-start md:justify-between md:h-[150px]
     }
+    .cart-btn{
+      @apply bg-[#1A284B33] bg-opacity-30 rounded-full text-lg text-black p-1 text-center border-2 border-solid border-slate-300
+    }
+    .desk-sidebar{
+      @apply bg-white dark:bg-black dark:text-white row-start-2 col-span-1 h-full   border-r border-solid border-slate-100 dark:border-black shadow rounded-lg dark:rounded-none
+    }
+    .side-bar-item{
+      @apply  flex justify-start py-2 px-4 items-center w-full gap-x-3 text-lg text-black  hover:dark:bg-hoverGray/40  hover:bg-slate-100/90  hover:border-baseOrng hover:dark:border-white
+    }
+
 }

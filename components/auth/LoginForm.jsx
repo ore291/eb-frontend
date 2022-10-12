@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const LoginForm = () => {
   return (
-    <div className="mt-32">
-      <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md">
+    <div className="mt-12 md:mt-32">
+      <div className="bg-white lg:w-4/12 md:6/12 w-full m-auto my-10 shadow-md">
         <div className="py-8 px-8 rounded-xl">
           <h1 className="font-medium text-2xl mt-3 text-start">Welcome</h1>
           <h3 className="font-light text-xl text-start">
@@ -39,7 +39,7 @@ const LoginForm = () => {
                 </a>
               </div>
             </div>
-            <button className="block text-center text-white bg-[#F67A01] p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full">
+            <button className="block text-center text-white bg-baseOrng p-3 duration-300 rounded-sm hover:bg-[#ff9900] w-full">
               Login
             </button>
           </form>
